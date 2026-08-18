@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+
+
+
+/* font-swap */
+@font-face {
+  font-family: "MyFont";
+  src: url("/media/slick.265d68e3.woff2") format("woff2"),
+       url("/media/slick.265d68e3.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* 👈 This is the key */
+}
+
+
+/* testimonials */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll-left {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 100s linear infinite;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}

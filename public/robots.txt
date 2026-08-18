@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /private
+
+# Host
+Host: https://srinuinvisiblegrills.com
+
+# Sitemaps
+Sitemap: https://srinuinvisiblegrills.com/sitemap.xml
