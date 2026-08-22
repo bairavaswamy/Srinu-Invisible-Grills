@@ -1,32 +1,38 @@
-import SafetyCard from "@/app/home/components/cards";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import SafetyCard, { type HomeServiceCard } from "./cards";
 
-type CardData = {
-  image: string;
-  title: string;
-  description: string;
-  readMoreLink: string;
-  callNumber: string;
-};
-
-const SafetySolutions = ({ cards }: { cards: CardData[] }) => {
+export default function SafetySolutions({ cards }: { cards: HomeServiceCard[] }) {
   return (
-    <section className="relative py-16 px-6 md:px-12 bg-[#26395A] overflow-hidden">
-      {/* Subtle golden glow overlay */}
-      <div className="absolute inset-0 bg-amber-100/10 pointer-events-none" />
+    <section className="px-5 py-16 sm:px-8 md:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="max-w-3xl">
+            <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-[var(--brand-aqua)]">
+              Core installation services
+            </p>
+            <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl md:text-5xl">
+              Practical protection for the spaces you use every day
+            </h2>
+            <p className="mt-4 max-w-2xl leading-7 text-[var(--text-secondary)]">
+              Compare the most requested safety solutions for balconies, windows,
+              homes and commercial properties in Visakhapatnam.
+            </p>
+          </div>
+          <Link
+            href="/services"
+            className="flex w-fit items-center gap-2 font-extrabold text-[var(--brand-ocean)] transition hover:text-[var(--brand-aqua)]"
+          >
+            Browse all services <ArrowRight size={18} />
+          </Link>
+        </div>
 
-      {/* Section Title */}
-      <h2 className="relative z-10 text-4xl md:text-5xl font-bold text-center mb-12 text-[#E78946] bg-clip-text bg-[#354664] drop-shadow-md">
-        Our Solutions
-      </h2>
-
-      {/* Cards Grid */}
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {cards.map((card) => (
-          <SafetyCard key={card.title} {...card} />
-        ))}
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {cards.map((card) => (
+            <SafetyCard key={card.href} {...card} />
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default SafetySolutions;
+}

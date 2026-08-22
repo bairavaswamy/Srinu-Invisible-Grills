@@ -1,11 +1,14 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://servanisafetynets.com', // 🔗 Replace with your real domain
-  generateRobotsTxt: true, // Generates robots.txt
+  siteUrl: 'https://srinuinvisiblegrills.com',
+  generateRobotsTxt: true,
   sitemapSize: 7000,
   changefreq: 'daily',
   priority: 0.7,
-  exclude: ['/admin/*', '/private/*'], // Optional: exclude pages
+  exclude: [
+    '/admin/*',
+    '/private/*',
+  ],
   robotsTxtOptions: {
     policies: [
       { userAgent: '*', allow: '/' },

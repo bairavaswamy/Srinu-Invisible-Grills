@@ -2,18 +2,165 @@
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 
+:root {
+  /* Primary brand */
+  --brand-midnight: #061722;
+  --brand-ocean: #0c2a38;
+  --brand-aqua: #1fc7c1;
+  --brand-ice: #53c7f0;
+  /* Legacy accent alias retained for existing components; no orange is used. */
+  --brand-copper: #53c7f0;
+
+  /* Backgrounds */
+  --background-main: #f4fafc;
+  --background-white: #ffffff;
+  --background-dark: #061722;
+
+  /* Text */
+  --text-primary: #0a202b;
+  --text-secondary: #647984;
+  --text-light: #f8fcff;
+  --text-light-muted: rgba(248, 252, 255, 0.74);
+
+  /* Glass surfaces */
+  --glass-dark: rgba(6, 23, 34, 0.68);
+  --glass-dark-soft: rgba(255, 255, 255, 0.09);
+  --glass-light: rgba(255, 255, 255, 0.72);
+
+  /* Glass borders */
+  --glass-border-dark: rgba(255, 255, 255, 0.22);
+  --glass-border-light: rgba(255, 255, 255, 0.88);
+
+  /* Shadows */
+  --shadow-soft: 0 18px 50px rgba(6, 23, 34, 0.1);
+  --shadow-dark: 0 18px 50px rgba(0, 0, 0, 0.2);
+  --shadow-aqua: 0 14px 35px rgba(31, 199, 193, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
+  background: var(--background-main);
+}
+
+body {
+  margin: 0;
+  color: var(--text-primary);
+  background: var(--background-main);
+  font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  color: var(--text-primary);
+  background: var(--brand-ice);
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand-aqua);
+  outline-offset: 3px;
+}
+
+.site-header {
+  color: var(--text-light);
+  background: linear-gradient(135deg, var(--brand-midnight), var(--brand-ocean));
+  border-color: var(--glass-border-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+.site-dark-hero {
+  color: var(--text-light);
+  background: linear-gradient(135deg, var(--brand-midnight), var(--brand-ocean));
+}
+
+.site-dark-hero :is(h1, h2, h3) {
+  color: var(--text-light) !important;
+}
+
+.site-dark-hero :is(p, li) {
+  color: var(--text-light-muted) !important;
+}
+
+.site-page {
+  color: var(--text-primary);
+  background: var(--background-main) !important;
+}
+
+.site-page :is(h1, h2, h3) {
+  color: var(--text-primary) !important;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.site-page :where(p, li) {
+  color: var(--text-secondary);
+}
+
+.site-page .site-dark-hero :is(h1, h2, h3) {
+  color: var(--text-light) !important;
+}
+
+.site-page .site-dark-hero :is(p, li) {
+  color: var(--text-light-muted) !important;
+}
+
+.site-section {
+  color: var(--text-primary);
+  background: linear-gradient(
+    135deg,
+    rgba(83, 199, 240, 0.08),
+    rgba(31, 199, 193, 0.05)
+  ) !important;
+}
+
+.site-card {
+  color: var(--text-primary);
+  background: var(--glass-light) !important;
+  border: 1px solid var(--glass-border-light) !important;
+  box-shadow: var(--shadow-soft) !important;
+  backdrop-filter: blur(18px);
+}
+
+.site-card :is(h1, h2, h3, summary, strong) {
+  color: var(--text-primary) !important;
+}
+
+.site-card :where(p, li) {
+  color: var(--text-secondary) !important;
+}
+
+.site-cta {
+  color: var(--text-primary) !important;
+  background: linear-gradient(135deg, var(--brand-aqua), var(--brand-ice)) !important;
+  box-shadow: var(--shadow-aqua) !important;
+}
+
+.site-cta:hover {
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+}
+
+.site-accent {
+  color: var(--brand-aqua) !important;
+}
+
+.site-footer {
+  color: var(--text-light-muted);
+  background: var(--background-dark) !important;
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
-    opacity: 0.6;
+    opacity: 0.45;
   }
   50% {
-    transform: scale(1.15);
-    opacity: 0.9;
+    transform: scale(1.12);
+    opacity: 0.75;
   }
 }
 
@@ -21,42 +168,92 @@ html {
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
-
-@keyframes pulse-glow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.9;
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-
-
-
-/* font-swap */
-@font-face {
-  font-family: "MyFont";
-  src: url("/media/slick.265d68e3.woff2") format("woff2"),
-       url("/media/slick.265d68e3.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* 👈 This is the key */
-}
-
-
-/* testimonials */
-@keyframes scroll-left {
-  0% {
+@keyframes home-marquee {
+  from {
     transform: translateX(0);
   }
-  100% {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.home-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: home-marquee 28s linear infinite;
+}
+
+.home-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.home-scrollbar-none {
+  scrollbar-width: none;
+}
+
+.home-scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.home-hero-slider,
+.home-hero-slider .slick-slider,
+.home-hero-slider .slick-list {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.home-hero-slider .slick-list {
+  overflow: hidden;
+}
+
+.home-hero-slider .slick-slide,
+.home-hero-slider .slick-slide > div {
+  min-width: 0;
+}
+
+.home-hero-slider .slick-dots {
+  bottom: 20px;
+  z-index: 20;
+}
+
+.home-hero-slider .slick-dots li {
+  height: 8px;
+  width: 8px;
+  margin: 0 5px;
+}
+
+.home-hero-slider .slick-dots li button {
+  height: 8px;
+  width: 8px;
+  padding: 0;
+}
+
+.home-hero-slider .slick-dots li button::before {
+  height: 8px;
+  width: 8px;
+  border-radius: 999px;
+  color: transparent;
+  background: rgba(248, 252, 255, 0.5);
+  opacity: 1;
+  content: "";
+}
+
+.home-hero-slider .slick-dots li.slick-active button::before {
+  background: var(--brand-aqua);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-marquee-track {
+    animation: none;
+  }
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
     transform: translateX(-100%);
   }
 }
@@ -67,6 +264,18 @@ html {
   animation: scroll-left 100s linear infinite;
 }
 
-.animate-scroll-left:hover {
+.animate-scroll-left:hover,
+.animate-scroll-left:focus-within {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

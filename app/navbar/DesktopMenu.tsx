@@ -1,100 +1,265 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import {
+  ArrowRight,
+  ChevronDown,
+  MapPin,
+  MapPinned,
+  PhoneCall,
+  ShieldCheck,
+} from "lucide-react";
+import { serviceAreaGroups } from "@/app/data/locations";
+import { getServiceLocationPath } from "@/app/service-areas/serviceAreaData";
+import { serviceNavItems } from "@/app/servicesData/serviceRoutes";
 
-const links = [
-  { href: '/', label: 'HOME' },
-  { href: '/about', label: 'ABOUT' },
-  { href: '/gallery', label: 'GALLERY' },
-  { href: '/contactUs', label: 'CONTACT US' },
+const primaryLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/blogs", label: "Blogs" },
+  { href: "/contact", label: "Contact" },
 ];
 
-const serviceLinks = [
-  { href: '/services/balcony', text: 'Balcony Safety Nets' },
-  { href: '/services/invisible', text: 'Invisible Grills' },
-  { href: '/services/spikes', text: 'Bird Spikes' },
-  { href: '/services/residential', text: 'Residential Safety Nets' },
-  { href: '/services/sports', text: 'Sports Safety Nets' },
-  { href: '/services/construction', text: 'Construction Safety Nets' },
-];
+type OpenMenu = "services" | "areas" | null;
 
 export default function DesktopMenu() {
   const pathname = usePathname();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [hoverTimer, setHoverTimer] = useState<NodeJS.Timeout | null>(null);
+  const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const isActive = (path: string) => pathname === path;
-
-  const handleMouseEnter = () => {
-    if (hoverTimer) clearTimeout(hoverTimer);
-    setIsDropdownOpen(true);
+  const cancelClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
   };
 
-  const handleMouseLeave = () => {
-    const timer = setTimeout(() => setIsDropdownOpen(false), 150); // slight delay
-    setHoverTimer(timer);
+  const openDropdown = (menu: Exclude<OpenMenu, null>) => {
+    cancelClose();
+    setOpenMenu(menu);
+  };
+
+  const scheduleClose = (menu: Exclude<OpenMenu, null>) => {
+    cancelClose();
+    closeTimer.current = setTimeout(
+      () => setOpenMenu((current) => (current === menu ? null : current)),
+      160,
+    );
   };
 
   useEffect(() => {
-    return () => {
-      if (hoverTimer) clearTimeout(hoverTimer);
+    setOpenMenu(null);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenMenu(null);
     };
-  }, [hoverTimer]);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      cancelClose();
+    };
+  }, []);
+
+  const linkClass = (active: boolean) =>
+    `relative rounded-xl px-3 py-2 text-sm font-semibold transition ${
+      active
+        ? "bg-white/10 text-[var(--brand-copper)]"
+        : "text-[var(--text-light-muted)] hover:bg-white/[0.07] hover:text-white"
+    }`;
+
+  const menuButtonClass = (active: boolean) =>
+    `flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-semibold transition ${
+      active
+        ? "bg-white/10 text-[var(--brand-copper)]"
+        : "text-[var(--text-light-muted)] hover:bg-white/[0.07] hover:text-white"
+    }`;
 
   return (
-    <ul className="hidden md:flex space-x-6 items-center font-medium relative text-white">
-      {links.map((link) => (
-        <li key={link.href} className="relative">
+    <div className="hidden items-center gap-2 xl:flex">
+      <div className="flex items-center gap-0.5 rounded-2xl border border-white/10 bg-white/[0.04] p-1">
+        {primaryLinks.map((link) => (
           <Link
+            key={link.href}
             href={link.href}
-            className={`px-2 py-1 transition-all duration-300 ${
-              isActive(link.href)
-                ? 'text-[#E78946] after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:bg-[#E78946] after:rounded-full'
-                : 'hover:text-[#E78946]'
-            }`}
+            className={linkClass(pathname === link.href)}
           >
             {link.label}
           </Link>
-        </li>
-      ))}
+        ))}
 
-      {/* SERVICES DROPDOWN */}
-      <li
-        className="relative"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <button
-          className={`px-2 py-1 transition-all duration-300 ${
-            pathname.startsWith('/services')
-              ? 'text-[#E78946] after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:bg-amber-400 after:rounded-full'
-              : 'hover:text-[#E78946]'
-          }`}
+        <div
+          className="relative"
+          onMouseEnter={() => openDropdown("services")}
+          onMouseLeave={() => scheduleClose("services")}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              scheduleClose("services");
+            }
+          }}
         >
-          SERVICES
-        </button>
+          <button
+            type="button"
+            className={menuButtonClass(pathname.startsWith("/services"))}
+            aria-expanded={openMenu === "services"}
+            aria-controls="desktop-services-menu"
+            onClick={(event) => {
+              if (event.detail === 0) {
+                setOpenMenu((current) => (current === "services" ? null : "services"));
+                return;
+              }
+              setOpenMenu("services");
+            }}
+          >
+            Services
+            <ChevronDown
+              size={15}
+              className={`transition-transform ${openMenu === "services" ? "rotate-180" : ""}`}
+            />
+          </button>
 
-        {isDropdownOpen && (
-          <ul className="absolute left-0 mt-2 w-64 bg-[#354664] text-white rounded-xl shadow-lg border border-[#E78946]/20 overflow-hidden z-50">
-            {serviceLinks.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`block px-4 py-3 transition-all duration-300 ${
-                    pathname === item.href
-                      ? 'bg-[#354664] text-white font-semibold'
-                      : 'hover:bg-[#354664] hover:text-[#e78946]'
-                  }`}
-                >
-                  {item.text}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </li>
-    </ul>
+          {openMenu === "services" && (
+            <div
+              id="desktop-services-menu"
+              className="site-header absolute right-0 top-[calc(100%+0.75rem)] w-[38rem] overflow-hidden rounded-3xl border border-white/15 p-3 shadow-2xl"
+            >
+              <div className="mb-2 flex items-center justify-between rounded-2xl bg-white/[0.07] px-4 py-3">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--brand-copper)]">
+                    Installation services
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--text-light-muted)]">
+                    Choose the right protection for your property
+                  </p>
+                </div>
+                <ShieldCheck className="text-[var(--brand-aqua)]" size={26} />
+              </div>
+              <div className="grid grid-cols-2 gap-1">
+                {serviceNavItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition ${
+                      pathname === item.href
+                        ? "bg-white/10 text-[var(--brand-copper)]"
+                        : "text-[var(--text-light-muted)] hover:bg-white/[0.07] hover:text-white"
+                    }`}
+                  >
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-[var(--brand-aqua)]" />
+                    {item.text}
+                  </Link>
+                ))}
+              </div>
+              <Link
+                href="/services"
+                className="mt-2 flex items-center justify-between rounded-2xl border border-white/10 px-4 py-3 font-bold text-[var(--brand-ice)] transition hover:bg-white/[0.07]"
+              >
+                View all installation services
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <div
+          className="relative"
+          onMouseEnter={() => openDropdown("areas")}
+          onMouseLeave={() => scheduleClose("areas")}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              scheduleClose("areas");
+            }
+          }}
+        >
+          <button
+            type="button"
+            className={menuButtonClass(pathname.startsWith("/service-areas"))}
+            aria-expanded={openMenu === "areas"}
+            aria-controls="desktop-service-areas-menu"
+            onClick={(event) => {
+              if (event.detail === 0) {
+                setOpenMenu((current) => (current === "areas" ? null : "areas"));
+                return;
+              }
+              setOpenMenu("areas");
+            }}
+          >
+            Areas
+            <ChevronDown
+              size={15}
+              className={`transition-transform ${openMenu === "areas" ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {openMenu === "areas" && (
+            <div
+              id="desktop-service-areas-menu"
+              className="site-header fixed left-1/2 top-[76px] max-h-[calc(100vh-6rem)] w-[min(72rem,calc(100vw-2rem))] -translate-x-1/2 overflow-y-auto rounded-b-3xl border border-white/15 p-5 shadow-2xl"
+            >
+              <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
+                <div>
+                  <p className="flex items-center gap-2 text-sm font-bold text-[var(--brand-copper)]">
+                    <MapPinned size={18} /> Service Areas by Region
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--text-light-muted)]">
+                    Select your locality for city-specific service information
+                  </p>
+                </div>
+                <span className="rounded-full border border-[var(--brand-aqua)]/40 bg-[var(--brand-aqua)]/10 px-3 py-1 text-xs font-bold text-[var(--brand-aqua)]">
+                  41 locations
+                </span>
+              </div>
+
+              <div className="grid gap-x-6 gap-y-6 lg:grid-cols-3 xl:grid-cols-6">
+                {serviceAreaGroups.map((group) => (
+                  <section key={group.id} aria-label={group.label}>
+                    <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.13em] text-[var(--brand-copper)]">
+                      {group.label}
+                    </p>
+                    <ul className="space-y-0.5">
+                      {group.locations.map((location) => {
+                        const href = getServiceLocationPath(location.slug);
+                        return (
+                          <li key={location.slug}>
+                            <Link
+                              href={href}
+                              className={`flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm transition ${
+                                pathname === href || pathname.startsWith(`${href}/`)
+                                  ? "bg-white/10 text-white"
+                                  : "text-[var(--text-light-muted)] hover:bg-white/[0.07] hover:text-white"
+                              }`}
+                            >
+                              <MapPin size={13} className="shrink-0 text-[var(--brand-aqua)]" />
+                              {location.label}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+
+              <Link
+                href="/service-areas"
+                className="mt-5 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 font-bold text-[var(--brand-ice)] transition hover:bg-white/[0.08]"
+              >
+                Browse all service areas
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <Link
+        href="/contact"
+        className="site-cta ml-1 flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-extrabold transition"
+      >
+        <PhoneCall size={16} />
+        Free Quote
+      </Link>
+    </div>
   );
 }

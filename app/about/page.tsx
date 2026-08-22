@@ -1,4 +1,4 @@
-import Head from "next/head";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
@@ -10,38 +10,23 @@ import Mission from "../about/Mission";
 import Values from "../about/Values";
 import WhySolutionsMatter from "../about/WhySolutionsMatter";
 import Closing from "../about/Closing";
+import { siteConfig } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: { absolute: "About Srinu Invisible Grills | Visakhapatnam" },
+  description:
+    "Learn about Srinu Invisible Grills, our safety standards, installation approach, and balcony-protection services in Visakhapatnam.",
+  alternates: { canonical: `${siteConfig.url}/about` },
+};
 
 const About = () => {
   return (
     <>
-      <Head>
-        <title>
-          About Us - Srinu Invisible Grills | Safety Nets, Bird Protection & Invisible Grills
-        </title>
-        <meta
-          name="description"
-          content="Srinu Invisible Grills Nets offers premium safety nets, pigeon protection, bird spikes, and invisible grills. Protect your loved ones with stylish, durable safety solutions."
-        />
-        <meta
-          property="og:title"
-          content="About Us - Srinu Invisible grills| Safety Solutions Expert"
-        />
-        <meta
-          property="og:description"
-          content="Leading provider of safety nets, bird protection, and invisible grills with professional installation and affordable rates."
-        />
-        <meta
-          name="keywords"
-          content="safety nets, pigeon protection, bird spikes, invisible grills, home safety, workplace safety, bird proofing, durable nets, safety installation"
-        />
-        <link rel="canonical" href="https://srinuinvisiblegrills.com/about" />
-      </Head>
-
       <Navbar />
 
-      <main className="bg-[#354664] text-[#E78946] px-4 md:px-8 py-12 mt-16">
+      <main className="site-page mt-16 px-4 py-12 md:px-8">
         <div className="max-w-5xl mx-auto space-y-10">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-center text-[#E78946]">
+          <h1 className="text-center text-3xl font-extrabold md:text-4xl">
             About Srinu Invisible Grills
           </h1>
 

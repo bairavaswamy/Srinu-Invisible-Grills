@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Contact } from "@/lib/types";
+import { siteConfig } from "@/lib/site";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState<Contact>({
@@ -47,7 +48,7 @@ const ContactForm = () => {
   };
 
   // Handle form submit
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -55,43 +56,42 @@ const ContactForm = () => {
       return;
     }
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    const message = [
+      "Hello Srinu Invisible Grills, I would like a free quote.",
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Phone: ${formData.phone}`,
+      `Requirement: ${formData.message}`,
+    ].join("\n");
 
-      const result = await response.json();
-
-      if (result.success) {
-        setSubmitted(true);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-          status: "new",
-        });
-        setTimeout(() => setSubmitted(false), 5000);
-      } else {
-        alert("⚠️ Failed to send message. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Submission error:", error);
-      alert("❌ Something went wrong. Please try again later.");
-    }
+    window.open(
+      `${siteConfig.whatsappUrl}?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+    setSubmitted(true);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      status: "new",
+    });
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
   return (
-    <div className="bg-[#26395A] rounded-2xl shadow-2xl p-8 border border-amber-300/30 text-amber-50 backdrop-blur-sm">
-      <h2 className="text-2xl font-bold bg-[#E78946] bg-clip-text text-transparent mb-6 text-center">
-        Send Us a Message
+    <div className="site-card rounded-2xl p-6 sm:p-8">
+      <h2 className="mb-2 text-center text-2xl font-bold">
+        Request a Free Quote
       </h2>
+      <p className="mb-6 text-center text-sm leading-6 text-[var(--text-secondary)]">
+        Share your requirement and continue securely in WhatsApp.
+      </p>
 
       {submitted ? (
         <p className="text-emerald-300 font-medium text-center">
-          ✅ Thank you! We’ll get back to you soon.
+          Your WhatsApp message is ready. We’ll respond as soon as possible.
         </p>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -99,7 +99,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="input-fname"
-              className="block text-amber-100 font-medium mb-1"
+              className="mb-1 block font-medium text-[var(--text-primary)]"
             >
               Full Name
             </label>
@@ -110,12 +110,14 @@ const ContactForm = () => {
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "name-error" : undefined}
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.name ? "border-red-500" : "border-amber-200/50"
-              } bg-white/10 text-amber-50 placeholder-amber-100/50 focus:ring-2 focus:ring-amber-300 outline-none`}
+              } bg-white/85 text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--brand-aqua)] outline-none`}
             />
             {errors.name && (
-              <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+              <p id="name-error" className="text-red-300 text-sm mt-1">{errors.name}</p>
             )}
           </div>
 
@@ -123,7 +125,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="input-gmail"
-              className="block text-amber-100 font-medium mb-1"
+              className="mb-1 block font-medium text-[var(--text-primary)]"
             >
               Email
             </label>
@@ -134,12 +136,14 @@ const ContactForm = () => {
               placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.email ? "border-red-500" : "border-amber-200/50"
-              } bg-white/10 text-amber-50 placeholder-amber-100/50 focus:ring-2 focus:ring-amber-300 outline-none`}
+              } bg-white/85 text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--brand-aqua)] outline-none`}
             />
             {errors.email && (
-              <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+              <p id="email-error" className="text-red-300 text-sm mt-1">{errors.email}</p>
             )}
           </div>
 
@@ -147,7 +151,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="input-phone"
-              className="block text-amber-100 font-medium mb-1"
+              className="mb-1 block font-medium text-[var(--text-primary)]"
             >
               Phone Number
             </label>
@@ -158,12 +162,15 @@ const ContactForm = () => {
               placeholder="Your Phone Number"
               value={formData.phone}
               onChange={handleChange}
+              inputMode="numeric"
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.phone ? "border-red-500" : "border-amber-200/50"
-              } bg-white/10 text-amber-50 placeholder-amber-100/50 focus:ring-2 focus:ring-amber-300 outline-none`}
+              } bg-white/85 text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--brand-aqua)] outline-none`}
             />
             {errors.phone && (
-              <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+              <p id="phone-error" className="text-red-300 text-sm mt-1">{errors.phone}</p>
             )}
           </div>
 
@@ -171,7 +178,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="label-for-tarea"
-              className="block text-amber-100 font-medium mb-1"
+              className="mb-1 block font-medium text-[var(--text-primary)]"
             >
               Message
             </label>
@@ -182,21 +189,23 @@ const ContactForm = () => {
               rows={4}
               value={formData.message}
               onChange={handleChange}
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? "message-error" : undefined}
               className={`w-full px-4 py-3 rounded-xl border ${
                 errors.message ? "border-red-500" : "border-amber-200/50"
-              } bg-white/10 text-amber-50 placeholder-amber-100/50 focus:ring-2 focus:ring-amber-300 outline-none`}
+              } bg-white/85 text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--brand-aqua)] outline-none`}
             />
             {errors.message && (
-              <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+              <p id="message-error" className="text-red-300 text-sm mt-1">{errors.message}</p>
             )}
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 bg-[#E78946] text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition transform hover:scale-[1.02]"
-          disabled>
-            Send Message
+            className="site-cta w-full rounded-xl py-3 font-bold transition focus:outline-none focus:ring-2 focus:ring-[var(--brand-aqua)]"
+          >
+            Continue in WhatsApp
           </button>
         </form>
       )}

@@ -1,18 +1,19 @@
-'use client';
+import { siteConfig } from "@/lib/site";
 
-const GetQuoteButton = () => {
+const GetQuoteButton = ({ serviceTitle }: { serviceTitle: string }) => {
+  const message = encodeURIComponent(
+    `Hello, I would like a quotation for ${serviceTitle} in Visakhapatnam.`,
+  );
+
   return (
-    <button
-      onClick={() => window.open('https://wa.me/7995792953', '_blank', 'noopener')}
-      className="mt-6 px-8 py-3 min-w-[44px] min-h-[44px] 
-      font-semibold text-white tracking-wide rounded-xl 
-      bg-[#E78946]
-      shadow-lg shadow-amber-500/20 border border-white
-     hover:scale-[1.03]
-      transition-all duration-300 ease-in-out"
+    <a
+      href={`${siteConfig.whatsappUrl}?text=${message}`}
+      target="_blank"
+      rel="noreferrer"
+      className="site-cta mt-8 inline-flex min-h-12 items-center justify-center rounded-xl px-8 py-3 font-bold transition"
     >
-      Get a Free Quote
-    </button>
+      Request a WhatsApp quote
+    </a>
   );
 };
 

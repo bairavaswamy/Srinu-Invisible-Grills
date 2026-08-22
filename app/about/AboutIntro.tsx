@@ -1,17 +1,17 @@
 const AboutIntro = () => {
   return (
-    <section className="max-w-2xl mx-auto px-4 text-center space-y-4 text-amber-50">
+    <section className="mx-auto max-w-2xl space-y-4 px-4 text-center">
       <p className="text-lg leading-relaxed">
         Welcome to{" "}
-        <span className="font-semibold bg-[#E78946] bg-clip-text text-transparent">
+        <span className="site-accent font-semibold">
           Srinu Invisible Grills
         </span>
         , your trusted partner in creating safe, hygienic, and worry-free
         environments for families and workplaces.
       </p>
-      <p className="text-lg leading-relaxed text-white">
+      <p className="text-lg leading-relaxed">
         Our belief is:{" "}
-        <em className="text-white italic">
+        <em className="italic">
           safety should never be a compromise
         </em>
         . We excel in protecting your spaces from accidents, pests, and hazards

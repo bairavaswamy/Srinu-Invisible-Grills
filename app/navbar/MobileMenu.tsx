@@ -1,289 +1,271 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import {
-  Home,
-  Info,
-  CalendarCheck,
-  PhoneCall,
-  Layers3,
+  BookOpen,
   ChevronDown,
-  ChevronUp,
-  ShieldCheck,
+  Home,
+  Images,
+  Info,
+  Mail,
   MapPin,
-  ThumbsUp,
+  MapPinned,
+  Menu,
+  PhoneCall,
+  ShieldCheck,
+  X,
 } from "lucide-react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { RxCross2 } from "react-icons/rx";
-import { balconylocalServices, invisibleGrillLocalService, nearMeBalconyServices,nearMeInvisibleServices } from "./constants";
+import { serviceAreaGroups } from "@/app/data/locations";
+import { getServiceLocationPath } from "@/app/service-areas/serviceAreaData";
+import { serviceNavItems } from "@/app/servicesData/serviceRoutes";
+import { siteConfig } from "@/lib/site";
 
-/* ================= MAIN LINKS ================= */
-const links = [
-  { href: "/", label: "HOME", icon: <Home size={18} /> },
-  { href: "/about", label: "ABOUT", icon: <Info size={18} /> },
-  { href: "/gallery", label: "GALLERY", icon: <CalendarCheck size={18} /> },
-  { href: "/contactUs", label: "CONTACT US", icon: <PhoneCall size={18} /> },
+const primaryLinks = [
+  { href: "/", label: "Home", icon: Home },
+  { href: "/about", label: "About", icon: Info },
+  { href: "/gallery", label: "Gallery", icon: Images },
+  { href: "/blogs", label: "Blogs", icon: BookOpen },
+  { href: "/contact", label: "Contact", icon: Mail },
 ];
-
-const serviceLinks = [ 
-  { href: "/services/balcony", text: "Balcony Safety Nets" },
-   { href: "/services/invisible", text: "Invisible Grills" },
-    { href: "/services/spikes", text: "Bird Spikes" }, 
-    { href: "/services/residential", text: "Residential Safety Nets" },
-     { href: "/services/sports", text: "Sports Safety Nets" },
-      { href: "/services/construction", text: "Construction Safety Nets" },
-      { href: "/solutions/pigeon-safety-nets", text: "Pigeon Safety Nets" },
-      { href: "/solutions/anti-bird-nets", text: "Anti Bird Nets" },
-      { href: "/solutions/bird-nets-for-balconies", text: "Bird Nets for Balconies" },
-      { href: "/solutions/pigeon-bird-spikes", text: "Bird Spikes" },
-      { href: "/solutions/building-safety-nets", text: "Building Safety Nets" },
-      { href: "/solutions/industrial-safety-nets", text: "Industrial Safety Nets" },
-     ];
 
 interface MobileMenuProps {
   isOpen: boolean;
-  setIsOpen: (val: boolean) => void;
+  setIsOpen: (value: boolean) => void;
 }
 
 export default function MobileMenu({ isOpen, setIsOpen }: MobileMenuProps) {
   const pathname = usePathname();
+  const [expandedSection, setExpandedSection] = useState<"services" | "areas" | null>(null);
 
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [openNearMeBalcony, setOpenNearMeBalcony] = useState(false);
-  const [openNearMeInvisible, setOpenNearMeInvisible] = useState(false);
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
-  const isActive = (path: string) => pathname === path;
+  const closeMenu = () => setIsOpen(false);
+
+  const toggleSection = (section: "services" | "areas") => {
+    setExpandedSection((current) => (current === section ? null : section));
+  };
 
   return (
     <>
-      {/* Hamburger Button */}
-      <button onClick={() => setIsOpen(!isOpen)} className="md:hidden" 
-        aria-label="Open navigation menu">
-        {isOpen ? <RxCross2 size={24} /> : <GiHamburgerMenu size={24} />}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/[0.07] text-white transition hover:bg-white/10 xl:hidden"
+        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={isOpen}
+        aria-controls="mobile-navigation"
+      >
+        {isOpen ? <X size={22} /> : <Menu size={23} />}
       </button>
 
-      {/* Sidebar */}
-      <div
-        className={`fixed inset-y-0 left-0 w-64 px-6 py-6 z-40 md:hidden
-        bg-gradient-to-br from-[#354664] to-[#26395A] text-white overflow-y-auto pb-24
-        transform transition-transform duration-300
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+      {isOpen && (
+        <button
+          type="button"
+          aria-label="Close navigation menu overlay"
+          onClick={closeMenu}
+          className="fixed inset-0 z-30 bg-[var(--brand-midnight)]/80 backdrop-blur-sm xl:hidden"
+        />
+      )}
+
+      <aside
+        id="mobile-navigation"
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+        className={`site-header fixed inset-y-0 right-0 z-40 w-[min(23rem,92vw)] overflow-y-auto border-l border-white/15 px-5 pb-10 pt-5 text-white transition-transform duration-300 xl:hidden ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-        {/* Logo */}
-        <div className="relative flex flex-col items-center mb-5">
-          <div className="relative w-20 h-20 mb-2">
-            <Image
-              src="/srinulogo.webp"
-              alt="Servani Logo"
-              fill
-              className="object-contain rounded-full"
-            />
-          </div>
-
-          <h1 className="text-md font-extrabold text-[#E78946]">
-            SRINU INVISIBLE GRILLS
-          </h1>
-
-          <button onClick={() => setIsOpen(false)} className="absolute top-0 right-0" 
-            aria-label="Close navigation menu">
-            <RxCross2 size={24} />
-          </button>
-        </div>
-
-        <hr className="border-white/20 mb-3" />
-
-        {/* Main Links */}
-        <div className="space-y-1">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className={`flex items-center gap-3 px-3 py-2 rounded-md ${
-                isActive(link.href)
-                  ? "bg-white/15 text-[#E78946]"
-                  : "hover:bg-white/10 hover:text-[#E78946]"
-              }`}
-            >
-              {link.icon}
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
-        <hr className="border-white/25 my-4" />
-
-        {/* Services */}
-        <div>
-          <button
-            onClick={() => setIsServicesOpen(!isServicesOpen)}
-            className="flex w-full items-center justify-between px-3 py-2 rounded-md hover:bg-white/10"
-          >
-            <div className="flex items-center gap-3">
-              <Layers3 size={18} />
-              Services
+        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <Link href="/" onClick={closeMenu} className="flex items-center gap-3">
+            <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/30 bg-white/5">
+              <Image
+                src="/srinulogo.webp"
+                alt="Srinu Invisible Grills logo"
+                fill
+                sizes="48px"
+                className="object-contain"
+              />
             </div>
-            {isServicesOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+            <div className="leading-tight">
+              <p className="text-sm font-black tracking-wide text-[var(--brand-copper)]">
+                SRINU INVISIBLE
+              </p>
+              <p className="mt-0.5 text-xs font-bold tracking-[0.18em] text-[var(--brand-aqua)]">
+                GRILLS
+              </p>
+            </div>
+          </Link>
+          <button
+            type="button"
+            onClick={closeMenu}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/[0.06]"
+            aria-label="Close navigation menu"
+          >
+            <X size={21} />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 py-4">
+          <a
+            href={`tel:${siteConfig.phoneInternational}`}
+            className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-3 py-3 text-sm font-bold"
+          >
+            <PhoneCall size={17} className="text-[var(--brand-aqua)]" /> Call Now
+          </a>
+          <Link
+            href="/contact"
+            onClick={closeMenu}
+            className="site-cta flex items-center justify-center rounded-xl px-3 py-3 text-sm font-extrabold"
+          >
+            Free Quote
+          </Link>
+        </div>
+
+        <div className="space-y-1">
+          {primaryLinks.map((link) => {
+            const Icon = link.icon;
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={closeMenu}
+                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
+                  active
+                    ? "bg-white/10 text-[var(--brand-copper)]"
+                    : "text-[var(--text-light-muted)] hover:bg-white/[0.07] hover:text-white"
+                }`}
+              >
+                <Icon size={18} className={active ? "text-[var(--brand-copper)]" : "text-[var(--brand-aqua)]"} />
+                {link.label}
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="mt-4 space-y-2 border-t border-white/10 pt-4">
+          <button
+            type="button"
+            onClick={() => toggleSection("services")}
+            aria-expanded={expandedSection === "services"}
+            aria-controls="mobile-services-list"
+            className={`flex w-full items-center justify-between rounded-xl px-3 py-3 text-sm font-bold transition ${
+              pathname.startsWith("/services") ? "bg-white/10 text-[var(--brand-copper)]" : "hover:bg-white/[0.07]"
+            }`}
+          >
+            <span className="flex items-center gap-3">
+              <ShieldCheck size={18} className="text-[var(--brand-aqua)]" /> Services
+            </span>
+            <ChevronDown
+              size={18}
+              className={`transition-transform ${expandedSection === "services" ? "rotate-180" : ""}`}
+            />
           </button>
 
-          {isServicesOpen && (
-            <ul className="ml-4 mt-2 space-y-1">
-
-              {/* BALCONY DROPDOWN */}
-              <li>
-                <button
-                  onClick={() =>
-                    setOpenDropdown(openDropdown === "balcony" ? null : "balcony")
-                  }
-                  className="flex w-full justify-between px-3 py-2 hover:text-[#E78946]"
+          {expandedSection === "services" && (
+            <div id="mobile-services-list" className="grid grid-cols-1 gap-1 rounded-2xl bg-white/[0.04] p-2">
+              {serviceNavItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenu}
+                  className={`rounded-lg px-2.5 py-2 text-xs leading-5 transition ${
+                    pathname === item.href
+                      ? "bg-white/10 text-[var(--brand-copper)]"
+                      : "text-[var(--text-light-muted)] hover:bg-white/[0.07] hover:text-white"
+                  }`}
                 >
-                  Balcony Safety Nets
-                  {openDropdown === "balcony" ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                </button>
+                  {item.text}
+                </Link>
+              ))}
+              <Link
+                href="/services"
+                onClick={closeMenu}
+                className="mt-1 rounded-lg border border-white/10 px-3 py-2 text-center text-xs font-bold text-[var(--brand-ice)]"
+              >
+                View all services
+              </Link>
+            </div>
+          )}
 
-                {openDropdown === "balcony" && (
-                  <ul className="ml-4 mt-1 space-y-1">
-                    {balconylocalServices.map((b) => (
-                      <li key={b.href}>
+          <button
+            type="button"
+            onClick={() => toggleSection("areas")}
+            aria-expanded={expandedSection === "areas"}
+            aria-controls="mobile-service-areas-list"
+            className={`flex w-full items-center justify-between rounded-xl px-3 py-3 text-sm font-bold transition ${
+              pathname.startsWith("/service-areas") ? "bg-white/10 text-[var(--brand-copper)]" : "hover:bg-white/[0.07]"
+            }`}
+          >
+            <span className="flex items-center gap-3">
+              <MapPinned size={18} className="text-[var(--brand-aqua)]" /> Service Areas
+            </span>
+            <ChevronDown
+              size={18}
+              className={`transition-transform ${expandedSection === "areas" ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {expandedSection === "areas" && (
+            <div id="mobile-service-areas-list" className="space-y-4 rounded-2xl bg-white/[0.04] p-3">
+              {serviceAreaGroups.map((group) => (
+                <section key={group.id} aria-label={group.label}>
+                  <p className="mb-2 text-[11px] font-extrabold uppercase tracking-[0.12em] text-[var(--brand-copper)]">
+                    {group.label}
+                  </p>
+                  <div className="grid grid-cols-1 gap-1">
+                    {group.locations.map((location) => {
+                      const href = getServiceLocationPath(location.slug);
+                      return (
                         <Link
-                          href={b.href}
-                          onClick={() => setIsOpen(false)}
-                          className="block px-3 py-1 text-sm hover:text-[#E78946]"
+                          key={location.slug}
+                          href={href}
+                          onClick={closeMenu}
+                          className={`flex items-center gap-1 rounded-lg px-2 py-1.5 text-xs leading-5 transition ${
+                            pathname === href || pathname.startsWith(`${href}/`)
+                              ? "bg-white/10 text-white"
+                              : "text-[var(--text-light-muted)] hover:bg-white/[0.07] hover:text-white"
+                          }`}
                         >
-                          {b.text}
+                          <MapPin size={11} className="shrink-0 text-[var(--brand-aqua)]" />
+                          {location.label}
                         </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-
-              {/* INVISIBLE GRILLS DROPDOWN */}
-              <li>
-                <button
-                  onClick={() =>
-                    setOpenDropdown(openDropdown === "invisible" ? null : "invisible")
-                  }
-                  className="flex w-full justify-between px-3 py-2 hover:text-[#E78946]"
-                >
-                  Invisible Grills
-                  {openDropdown === "invisible" ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                </button>
-
-                {openDropdown === "invisible" && (
-                  <ul className="ml-4 mt-1 space-y-1">
-                    {invisibleGrillLocalService.map((g) => (
-                      <li key={g.href}>
-                        <Link
-                          href={g.href}
-                          onClick={() => setIsOpen(false)}
-                          className="block px-3 py-1 text-sm hover:text-[#E78946]"
-                        >
-                          {g.text}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-
-                            {/* NEAR ME BALCONY DROPDOWN */}
-              <li>
-                <button
-                  onClick={() => setOpenNearMeBalcony(!openNearMeBalcony)}
-                  className="flex w-full justify-between px-3 py-2 hover:text-[#E78946]"
-                >
-                  Near Me Balcony Nets
-                  {openNearMeBalcony ? (
-                    <ChevronUp size={16} />
-                  ) : (
-                    <ChevronDown size={16} />
-                  )}
-                </button>
-
-                {openNearMeBalcony && (
-                  <ul className="ml-4 mt-1 space-y-1">
-                    {nearMeBalconyServices.map((b) => (
-                      <li key={b.href}>
-                        <Link
-                          href={b.href}
-                          onClick={() => setIsOpen(false)}
-                          className="block px-3 py-1 text-sm hover:text-[#E78946]"
-                        >
-                          {b.text}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-
-                              {/* NEAR ME INVISIBLE GRILLS DROPDOWN */}
-                <li>
-                  <button
-                    onClick={() => setOpenNearMeInvisible(!openNearMeInvisible)}
-                    className="flex w-full justify-between px-3 py-2 hover:text-[#E78946]"
-                  >
-                    Near Me Invisible Grills
-                    {openNearMeInvisible ? (
-                      <ChevronUp size={16} />
-                    ) : (
-                      <ChevronDown size={16} />
-                    )}
-                  </button>
-
-                  {openNearMeInvisible && (
-                    <ul className="ml-4 mt-1 space-y-1">
-                      {nearMeInvisibleServices.map((g) => (
-                        <li key={g.href}>
-                          <Link
-                            href={g.href}
-                            onClick={() => setIsOpen(false)}
-                            className="block px-3 py-1 text-sm hover:text-[#E78946]"
-                          >
-                            {g.text}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-
-              {/* NORMAL LINKS */}
-              {serviceLinks
-                .filter((s) => s.href)
-                .map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href!}
-                      onClick={() => setIsOpen(false)}
-                      className="block px-3 py-2 hover:text-[#E78946]"
-                    >
-                      {item.text}
-                    </Link>
-                  </li>
-                ))}
-            </ul>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))}
+              <Link
+                href="/service-areas"
+                onClick={closeMenu}
+                className="block rounded-lg border border-white/10 px-3 py-2 text-center text-xs font-bold text-[var(--brand-ice)]"
+              >
+                Browse all areas
+              </Link>
+            </div>
           )}
         </div>
 
-        {/* Footer Info */}
-        <div className="mt-10 border-t border-white/20 pt-5 text-center space-y-3 text-sm text-[#E78946]">
-          <div className="flex justify-center gap-2">
-            <ShieldCheck size={16} /> Certified Quality Materials
-          </div>
-          <div className="flex justify-center gap-2">
-            <MapPin size={16} /> Serving All Major Cities
-          </div>
-          <div className="flex justify-center gap-2">
-            <ThumbsUp size={16} /> 5K+ Happy Customers
-          </div>
+        <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.15em] text-[var(--brand-copper)]">
+            Visakhapatnam installation team
+          </p>
+          <a
+            href={`tel:${siteConfig.phoneInternational}`}
+            className="mt-2 block font-extrabold text-white"
+          >
+            {siteConfig.phoneDisplay}
+          </a>
         </div>
-      </div>
+      </aside>
     </>
   );
 }

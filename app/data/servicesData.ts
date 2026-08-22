@@ -12,7 +12,7 @@ export const servicesData: Record<string, Service> = {
     id: "pigeon-safety-nets",
     title: "Pigeon Safety Nets",
     description:
-      "Pigeon safety nets from Srinu Balcony Safety Nets help keep balconies, windows, and open areas clean by preventing pigeons from entering. These nets maintain airflow and sunlight while stopping birds from nesting or causing hygiene issues. Made with long lasting and weather resistant material, they are ideal for homes and commercial spaces.",
+      "Pigeon safety nets from Srinu Invisible Grills help keep balconies, windows, and open areas clean by preventing pigeons from entering. These nets maintain airflow and sunlight while stopping birds from nesting or causing hygiene issues. Made with long lasting and weather resistant material, they are ideal for homes and commercial spaces.",
     detailedContent: `
       Our pigeon safety nets are designed to stop bird entry without blocking ventilation.  
       They reduce cleaning issues and help maintain hygienic surroundings.
@@ -29,7 +29,7 @@ export const servicesData: Record<string, Service> = {
     id: "anti-bird-nets",
     title: "Anti Bird Nets",
     description:
-      "Srinu Balcony Safety Nets offers anti bird nets that protect open areas from birds like pigeons, sparrows, and crows. These nets act as a safe and simple barrier to avoid nesting, dirt, and disturbance. They blend with the building design and are made from strong UV resistant material.",
+      "Srinu Invisible Grills offers anti bird nets that protect open areas from birds like pigeons, sparrows, and crows. These nets act as a safe and simple barrier to avoid nesting, dirt, and disturbance. They blend with the building design and are made from strong UV resistant material.",
     detailedContent: `
       Anti bird nets help maintain a clean environment by stopping birds from settling in open areas.  
       They are durable, lightweight, and suitable for any property.
@@ -46,7 +46,7 @@ export const servicesData: Record<string, Service> = {
     id: "bird-nets-for-balconies",
     title: "Bird Nets for Balconies",
     description:
-      "Balcony bird nets from Srinu Balcony Safety Nets help keep unwanted birds away while allowing fresh air and clear visibility. These nets make balconies safer for families and prevent dirt caused by pigeons.",
+      "Balcony bird nets from Srinu Invisible Grills help keep unwanted birds away while allowing fresh air and clear visibility. These nets make balconies safer for families and prevent dirt caused by pigeons.",
     detailedContent: `
       Our balcony nets are designed to cover open spaces securely.  
       They protect against bird entry without affecting the look of your home.
@@ -63,7 +63,7 @@ export const servicesData: Record<string, Service> = {
     id: "bird-netting-service",
     title: "Bird Netting Service",
     description:
-      "Srinu Balcony Safety Nets provides complete bird netting services for homes and commercial buildings. These nets help prevent birds from nesting and causing hygiene problems in balconies and open areas.",
+      "Srinu Invisible Grills provides complete bird netting services for homes and commercial buildings. These nets help prevent birds from nesting and causing hygiene problems in balconies and open areas.",
     detailedContent: `
       Our team handles measurement, material selection, and installation.  
       We use high quality nets that match your building appearance.
@@ -80,7 +80,7 @@ export const servicesData: Record<string, Service> = {
     id: "bird-protection-nets",
     title: "Bird Protection Nets",
     description:
-      "Bird protection nets from Srinu Balcony Safety Nets stop birds from entering balconies, terraces, and open structures. They are safe, long lasting, and keep your surroundings hygienic.",
+      "Bird protection nets from Srinu Invisible Grills stop birds from entering balconies, terraces, and open structures. They are safe, long lasting, and keep your surroundings hygienic.",
     detailedContent: `
       These nets allow free airflow while blocking birds from settling.  
       They are suitable for apartments, hospitals, warehouses, and more.
@@ -97,7 +97,7 @@ export const servicesData: Record<string, Service> = {
     id: "pigeon-nets-installation",
     title: "Pigeon Nets Installation",
     description:
-      "Srinu Balcony Safety Nets offers professional pigeon net installation for balconies, windows, and open spaces. These nets help prevent pigeon entry and avoid stains, smell, and other hygiene problems.",
+      "Srinu Invisible Grills offers professional pigeon net installation for balconies, windows, and open spaces. These nets help prevent pigeon entry and avoid stains, smell, and other hygiene problems.",
     detailedContent: `
       Our technicians ensure strong installation using quality fittings.  
       Nets remain stable even in harsh weather.
@@ -114,7 +114,7 @@ export const servicesData: Record<string, Service> = {
     id: "pigeon-bird-spikes",
     title: "Pigeon and Bird Spikes",
     description:
-      "Bird spikes from Srinu Balcony Safety Nets prevent birds from sitting on ledges, rooftops, and AC units. These spikes work as a harmless way to stop birds from perching and creating mess.",
+      "Bird spikes from Srinu Invisible Grills prevent birds from sitting on ledges, rooftops, and AC units. These spikes work as a harmless way to stop birds from perching and creating mess.",
     detailedContent: `
       Our spikes are made from strong stainless steel and polycarbonate.  
       They require no maintenance and last for years.
@@ -131,7 +131,7 @@ export const servicesData: Record<string, Service> = {
     id: "building-safety-nets",
     title: "Building Safety Nets",
     description:
-      "Srinu Balcony Safety Nets provides building safety nets to protect workers and nearby areas from falling objects during construction or maintenance. These nets ensure safety and reduce accident risks.",
+      "Srinu Invisible Grills provides building safety nets to protect workers and nearby areas from falling objects during construction or maintenance. These nets ensure safety and reduce accident risks.",
     detailedContent: `
       Our nets are strong enough to handle heavy loads.  
       They are commonly used for high rise buildings and construction sites.
@@ -148,7 +148,7 @@ export const servicesData: Record<string, Service> = {
     id: "car-parking-safety-nets",
     title: "Car Parking Safety Nets",
     description:
-      "Car parking safety nets from Srinu Balcony Safety Nets protect vehicles from falling debris, birds, and other hazards. These nets help maintain clean and safe parking areas in apartments and offices.",
+      "Car parking safety nets from Srinu Invisible Grills protect vehicles from falling debris, birds, and other hazards. These nets help maintain clean and safe parking areas in apartments and offices.",
     detailedContent: `
       Our nets are transparent, strong, and weather resistant.
       Protects vehicles from damage  
@@ -164,7 +164,7 @@ export const servicesData: Record<string, Service> = {
     id: "children-safety-nets",
     title: "Children Safety Nets",
     description:
-      "Children safety nets from Srinu Balcony Safety Nets protect kids from accidental falls in balconies, windows, and terraces. These nets are safe, tough, and suitable for families in high rise homes.",
+      "Children safety nets from Srinu Invisible Grills protect kids from accidental falls in balconies, windows, and terraces. These nets are safe, tough, and suitable for families in high rise homes.",
     detailedContent: `
       Made from non toxic and strong material for complete safety.
       Prevents accidental falls  
@@ -180,7 +180,7 @@ export const servicesData: Record<string, Service> = {
     id: "construction-safety-nets",
     title: "Construction Safety Nets",
     description:
-      "Srinu Balcony Safety Nets provides construction safety nets to prevent accidents in building sites. These nets catch falling objects and reduce safety risks for workers and pedestrians.",
+      "Srinu Invisible Grills provides construction safety nets to prevent accidents in building sites. These nets catch falling objects and reduce safety risks for workers and pedestrians.",
     detailedContent: `
       Our nets are designed for tough usage in building projects.
       Helps meet safety standards  
@@ -188,7 +188,7 @@ export const servicesData: Record<string, Service> = {
       Available in multiple sizes  
       Reduces workplace accidents  
     `,
-    image: "/safetynet/construction-nets.webp",
+    image: "/images/construction-net.webp",
     category: "General Safety Nets",
   },
 
@@ -196,7 +196,7 @@ export const servicesData: Record<string, Service> = {
     id: "industrial-safety-nets",
     title: "Industrial Safety Nets",
     description:
-      "Industrial safety nets from Srinu Balcony Safety Nets are used to protect workers, equipment, and goods in factories and warehouses. These nets offer strong and reliable safety coverage.",
+      "Industrial safety nets from Srinu Invisible Grills are used to protect workers, equipment, and goods in factories and warehouses. These nets offer strong and reliable safety coverage.",
     detailedContent: `
       Suitable for heavy duty industrial environments.
       Prevents accidents  
@@ -212,7 +212,7 @@ export const servicesData: Record<string, Service> = {
     id: "pets-safety-nets",
     title: "Pets Safety Nets",
     description:
-      "Pets safety nets by Srinu Balcony Safety Nets help keep cats and dogs safe in balconies and windows by preventing accidental falls. These nets are transparent, strong, and secure.",
+      "Pets safety nets by Srinu Invisible Grills help keep cats and dogs safe in balconies and windows by preventing accidental falls. These nets are transparent, strong, and secure.",
     detailedContent: `
       Designed to protect pets without blocking airflow.
       Safe for all pets  
@@ -228,7 +228,7 @@ export const servicesData: Record<string, Service> = {
     id: "swimming-pool-safety-nets",
     title: "Swimming Pool Safety Nets",
     description:
-      "Swimming pool safety nets from Srinu Balcony Safety Nets provide safety around pool areas by preventing accidental falls. These nets are suitable for homes, hotels, and resorts.",
+      "Swimming pool safety nets from Srinu Invisible Grills provide safety around pool areas by preventing accidental falls. These nets are suitable for homes, hotels, and resorts.",
     detailedContent: `
       Made with strong UV resistant material.
       Helps prevent drowning risks  
@@ -236,7 +236,7 @@ export const servicesData: Record<string, Service> = {
       Long lasting net quality  
       Ideal for residential and commercial pools  
     `,
-    image: "/images/swimming-pool-safety.webp",
+    image: "/images/open-area-safety-nets.webp",
     category: "General Safety Nets",
   },
 
@@ -244,7 +244,7 @@ export const servicesData: Record<string, Service> = {
     id: "duct-area-safety-nets",
     title: "Duct Area Safety Nets",
     description:
-      "Srinu Balcony Safety Nets offers duct area safety nets to prevent falls and protect workers in open duct spaces. These nets are strong and secure for all building types.",
+      "Srinu Invisible Grills offers duct area safety nets to prevent falls and protect workers in open duct spaces. These nets are strong and secure for all building types.",
     detailedContent: `
       Made from high tensile nylon or polyethylene.
       Prevents falls in duct openings  
@@ -260,7 +260,7 @@ export const servicesData: Record<string, Service> = {
     id: "open-area-safety-nets",
     title: "Open Area Safety Nets",
     description:
-      "Open area safety nets from Srinu Balcony Safety Nets secure large open spaces such as shafts and courtyards. They prevent accidents and falling objects while maintaining airflow.",
+      "Open area safety nets from Srinu Invisible Grills secure large open spaces such as shafts and courtyards. They prevent accidents and falling objects while maintaining airflow.",
     detailedContent: `
       UV stabilized and durable material.
       Perfect for open buildings  
@@ -276,7 +276,7 @@ export const servicesData: Record<string, Service> = {
     id: "mosquito-safety-nets",
     title: "Mosquito Safety Nets",
     description:
-      "Mosquito safety nets from Srinu Balcony Safety Nets keep mosquitoes and insects out while allowing free airflow. Installed on windows, doors, or beds, they help maintain a healthy living environment.",
+      "Mosquito safety nets from Srinu Invisible Grills keep mosquitoes and insects out while allowing free airflow. Installed on windows, doors, or beds, they help maintain a healthy living environment.",
     detailedContent: `
       Fine mesh blocks insects effectively.
       Prevents mosquito borne diseases  
@@ -284,7 +284,7 @@ export const servicesData: Record<string, Service> = {
       Fits windows and doors  
       Easy to clean and maintain  
     `,
-    image: "/images/mosquito-safety-nets.webp",
+    image: "/safetynet/mosquito-safety-nets.webp",
     category: "General Safety Nets",
   },
 
@@ -292,7 +292,7 @@ export const servicesData: Record<string, Service> = {
     id: "monkey-safety-nets",
     title: "Monkey Safety Nets",
     description:
-      "Monkey safety nets from Srinu Balcony Safety Nets prevent monkeys from entering balconies, rooftops, and open spaces. These nets avoid damage and maintain safety without harming animals.",
+      "Monkey safety nets from Srinu Invisible Grills prevent monkeys from entering balconies, rooftops, and open spaces. These nets avoid damage and maintain safety without harming animals.",
     detailedContent: `
       Made using strong weather proof nylon.
       Prevents monkey entry  
@@ -308,7 +308,7 @@ export const servicesData: Record<string, Service> = {
     id: "coconut-tree-safety-nets",
     title: "Coconut Tree Safety Nets",
     description:
-      "Coconut tree safety nets from Srinu Balcony Safety Nets prevent injuries and property damage caused by falling coconuts. These nets are ideal for homes, parks, and public places.",
+      "Coconut tree safety nets from Srinu Invisible Grills prevent injuries and property damage caused by falling coconuts. These nets are ideal for homes, parks, and public places.",
     detailedContent: `
       Made from impact resistant material.
       Stops falling coconuts  
@@ -324,7 +324,7 @@ export const servicesData: Record<string, Service> = {
     id: "shade-nets",
     title: "Shade Nets",
     description:
-      "Shade nets from Srinu Balcony Safety Nets reduce heat, sunlight, and temperature in outdoor spaces. They help protect plants and provide comfort in gardens and terraces.",
+      "Shade nets from Srinu Invisible Grills reduce heat, sunlight, and temperature in outdoor spaces. They help protect plants and provide comfort in gardens and terraces.",
     detailedContent: `
       UV stabilized and long lasting.
       Reduces heat and sunlight  
@@ -340,7 +340,7 @@ export const servicesData: Record<string, Service> = {
     id: "nylon-nets",
     title: "Nylon Nets",
     description:
-      "Nylon nets from Srinu Balcony Safety Nets are strong, flexible, and suitable for multiple safety and sports uses. They perform well in both indoor and outdoor conditions.",
+      "Nylon nets from Srinu Invisible Grills are strong, flexible, and suitable for multiple safety and sports uses. They perform well in both indoor and outdoor conditions.",
     detailedContent: `
       High tensile strength.
       Light, durable material  
@@ -356,7 +356,7 @@ export const servicesData: Record<string, Service> = {
     id: "anti-seagull-nets",
     title: "Anti Seagull Nets",
     description:
-      "Anti seagull nets from Srinu Balcony Safety Nets protect rooftops and balconies in coastal areas from seagulls. These nets stop nesting and reduce cleaning issues.",
+      "Anti seagull nets from Srinu Invisible Grills protect rooftops and balconies in coastal areas from seagulls. These nets stop nesting and reduce cleaning issues.",
     detailedContent: `
       Durable and suitable for harsh weather.
       Prevents bird disturbance  
@@ -372,7 +372,7 @@ export const servicesData: Record<string, Service> = {
     id: "glass-safety-nets",
     title: "Glass Safety Nets",
     description:
-      "Glass safety nets from Srinu Balcony Safety Nets protect glass panels, balconies, and windows from accidents. These nets are transparent, strong, and blend with modern designs.",
+      "Glass safety nets from Srinu Invisible Grills protect glass panels, balconies, and windows from accidents. These nets are transparent, strong, and blend with modern designs.",
     detailedContent: `
       High strength transparent nets.
       Prevents glass related accidents  
@@ -388,7 +388,7 @@ export const servicesData: Record<string, Service> = {
     id: "hdpe-nets",
     title: "HDPE Nets",
     description:
-      "HDPE nets from Srinu Balcony Safety Nets are lightweight, flexible, and resistant to chemicals and weather. They are used in construction, agriculture, and safety applications.",
+      "HDPE nets from Srinu Invisible Grills are lightweight, flexible, and resistant to chemicals and weather. They are used in construction, agriculture, and safety applications.",
     detailedContent: `
       Long lasting and easy to handle.
       Handles harsh climate  
@@ -404,7 +404,7 @@ export const servicesData: Record<string, Service> = {
     id: "window-safety-nets",
     title: "Window Safety Nets",
     description:
-      "Window safety nets from Srinu Balcony Safety Nets protect children and pets from falling while allowing fresh air and light. These nets are transparent, sturdy, and perfect for high rise apartments.",
+      "Window safety nets from Srinu Invisible Grills protect children and pets from falling while allowing fresh air and light. These nets are transparent, sturdy, and perfect for high rise apartments.",
     detailedContent: `
       Secure mesh for full protection.
       Child and pet safe  
@@ -419,7 +419,7 @@ export const servicesData: Record<string, Service> = {
     id: "balcony-invisible-grills",
     title: "Balcony Invisible Grills",
     description:
-      "Balcony invisible grills from Srinu Balcony Safety Nets provide strong fall protection without blocking your view. Ideal for apartments and high-rise balconies, they ensure safety with a modern look.",
+      "Balcony invisible grills from Srinu Invisible Grills provide strong fall protection without blocking your view. Ideal for apartments and high-rise balconies, they ensure safety with a modern look.",
     detailedContent: `
       Stainless steel invisible wires
       Child and pet safe
@@ -569,7 +569,23 @@ export const servicesData: Record<string, Service> = {
       Transparent and strong
       Custom design for pools
     `,
-    image: "/images/swimming-pool-invisible-grills.webp",
+    image: "/invisiblegrill/balcony-invisible-grills.webp",
     category: "Invisible Grills",
   },
 };
+
+export const solutionCanonicalOverrides: Record<string, string> = {
+  "pigeon-safety-nets": "pigeon-safety-nets",
+  "pigeon-bird-spikes": "anti-bird-spikes",
+  "children-safety-nets": "children-safety-nets",
+  "construction-safety-nets": "construction-safety-nets",
+  "duct-area-safety-nets": "duct-area-safety-nets",
+  "open-area-safety-nets": "open-area-safety-nets",
+};
+
+export const secondaryServiceSlugs = Object.keys(servicesData).filter(
+  (slug) => !solutionCanonicalOverrides[slug],
+);
+
+export const getSecondaryService = (slug: string) =>
+  secondaryServiceSlugs.includes(slug) ? servicesData[slug] : undefined;

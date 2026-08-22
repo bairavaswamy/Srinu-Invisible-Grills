@@ -7,31 +7,28 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="flex items-center gap-3 group transition-all duration-300 hover:scale-[1.03]"
+      aria-label="Srinu Invisible Grills home"
+      className="group flex shrink-0 items-center gap-2.5"
     >
-      {/* Glowing Animated Logo */}
-      <div className="relative w-10 h-10 sm:w-12 sm:h-12">
-        {/* Glowing ring behind logo */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#354664] to-[#26395A] opacity-70 blur-md animate-pulse-glow group-hover:scale-105 transition-transform duration-500"></div>
-
-        {/* Logo Image */}
-        <div className="relative w-full h-full rounded-full border-2 border-white/40 shadow-lg overflow-hidden">
+      <div className="relative h-11 w-11 sm:h-12 sm:w-12">
+        <div className="absolute inset-0 rounded-full bg-[var(--brand-aqua)]/25 blur-md transition group-hover:bg-[var(--brand-aqua)]/40" />
+        <div className="relative h-full w-full overflow-hidden rounded-full border border-white/30 bg-white/5 shadow-lg">
           <Image
-            src="/srinulogo.webp" // replace with your actual logo path
-            alt="Servani Logo"
+            src="/srinulogo.webp"
+            alt="Srinu Invisible Grills logo"
             fill
+            sizes="48px"
             className="object-contain"
             priority
           />
         </div>
       </div>
 
-      {/* Text Section */}
       <div className="flex flex-col leading-tight">
-        <span className="text-lg sm:text-xl font-extrabold tracking-wide text-[#E78946] bg-clip-text drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+        <span className="text-[15px] font-black tracking-[0.05em] text-[var(--brand-copper)] sm:text-lg">
           SRINU INVISIBLE
         </span>
-        <span className="text-sm sm:text-base font-semibold text-[#E78946] tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+        <span className="mt-0.5 text-[11px] font-bold tracking-[0.22em] text-[var(--brand-aqua)] sm:text-xs">
           GRILLS
         </span>
       </div>

@@ -2,26 +2,25 @@ import Image from "next/image";
 
 type ImageCardProps = {
   image: string;
+  imageAlt: string;
   title: string;
 };
 
-const ImageCard = ({ image, title }: ImageCardProps) => {
-  return (
-    <div className="relative">
+const ImageCard = ({ image, imageAlt, title }: ImageCardProps) => (
+  <figure className="site-card relative overflow-hidden rounded-3xl">
+    <div className="relative aspect-[4/3]">
       <Image
         src={image}
-        alt={title}
-        width={600}
-        height={200}
-        sizes="(max-width: 768px) 90vw, 600px"
-        className="rounded-2xl shadow-2xl object-cover"
+        alt={imageAlt}
+        fill
+        sizes="(max-width: 1024px) 92vw, 550px"
+        className="object-cover"
       />
-      <div className="absolute -bottom-6 -right-6 bg-[#E78946] rounded-xl shadow-lg p-4 w-52 text-center">
-        <h3 className="font-bold text-white">Trusted by 10,000+</h3>
-        <p className="text-sm text-white/70">Happy Customers</p>
-      </div>
     </div>
-  );
-}
+    <figcaption className="border-t border-slate-200 px-6 py-4 text-sm text-[var(--text-secondary)]">
+      Custom {title.toLowerCase()} installation in Visakhapatnam
+    </figcaption>
+  </figure>
+);
 
 export default ImageCard;

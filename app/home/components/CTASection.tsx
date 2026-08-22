@@ -1,34 +1,54 @@
 import Link from "next/link";
+import { ArrowRight, MessageCircle, PhoneCall } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
-const CTASection = () => {
+export default function CTASection() {
   return (
-    <section className="relative bg-transparent py-16 px-6 text-center shadow-xl overflow-hidden">
-      {/* subtle golden glow background */}
-      <div className="absolute inset-0  pointer-events-none" />
+    <section className="px-5 py-16 sm:px-8 md:py-24">
+      <div className="site-dark-hero relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] px-6 py-12 shadow-[var(--shadow-dark)] sm:px-10 md:py-16 lg:px-16">
+        <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[var(--brand-aqua)]/14 blur-3xl" />
+        <div className="absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-[var(--brand-ice)]/10 blur-3xl" />
 
-      <h2 className="text-3xl md:text-4xl font-extrabold mb-4 bg-[#E78946] text-transparent bg-clip-text drop-shadow-md">
-        Ready to Protect Your Home?
-      </h2>
+        <div className="relative grid gap-9 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="max-w-3xl">
+            <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-[var(--brand-aqua)]">
+              Request a measured quotation
+            </p>
+            <h2 className="mt-4 text-3xl font-black leading-tight text-white sm:text-4xl md:text-5xl">
+              Tell us which opening you want to secure
+            </h2>
+            <p className="mt-5 max-w-2xl leading-7 text-[var(--text-light-muted)]">
+              Share your locality, approximate dimensions and preferred service. We’ll
+              help confirm the next step for measurement and installation.
+            </p>
+          </div>
 
-      <p className="max-w-xl mx-auto text-gray-300 mb-8 text-sm md:text-base">
-        Srinu Invisible Grills ensures durable, premium-quality protection for your home and family.  
-        Safety you can trust, quality you can see.
-      </p>
-
-      <Link
-        href="/contactUs"
-        className="relative inline-flex items-center justify-center px-8 py-3 text-emerald-950 font-bold rounded-full 
-        bg-[#E78946] shadow-lg
-        hover:scale-105 hover:shadow-orange-700/50 transition-all duration-300 overflow-hidden"
-      >
-        {/* shimmering gold sweep */}
-        <span className="absolute inset-0 bg-[#E78946]
-          opacity-0 hover:opacity-100 translate-x-[-150%] hover:translate-x-[150%] 
-          transition-all duration-[1.2s] ease-in-out" />
-        <span className="relative text-white font-bold z-10">Contact Us Today</span>
-      </Link>
+          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <Link
+              href="/contact"
+              className="site-cta flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3 font-extrabold transition"
+            >
+              Request a free quote <ArrowRight size={18} />
+            </Link>
+            <div className="grid grid-cols-2 gap-3">
+              <a
+                href={`tel:${siteConfig.phoneInternational}`}
+                className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.08] px-4 py-2 text-sm font-bold text-white transition hover:bg-white/[0.14]"
+              >
+                <PhoneCall size={16} /> Call
+              </a>
+              <a
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.08] px-4 py-2 text-sm font-bold text-white transition hover:bg-white/[0.14]"
+              >
+                <MessageCircle size={16} /> WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
-};
-
-export default CTASection;
+}

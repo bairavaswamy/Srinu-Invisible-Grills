@@ -1,22 +1,29 @@
-interface DetailedDescriptionProps {
-  description: string;
+type DetailedDescriptionProps = {
+  paragraphs: string[];
   title: string;
-}
+};
 
-const DetailedDescription = ({ description, title }: DetailedDescriptionProps) => {
-  return (
-    <section className="py-16 px-6 md:px-12 bg-[#354664] text-[#E78946]">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-8 bg-[#E78946] bg-clip-text text-transparent drop-shadow">
+const DetailedDescription = ({
+  paragraphs,
+  title,
+}: DetailedDescriptionProps) => (
+  <section id="service-details" className="scroll-mt-24 px-6 py-16 md:py-20">
+    <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+      <div>
+        <p className="site-accent text-sm font-bold uppercase tracking-[0.24em]">
+          Local installation expertise
+        </p>
+        <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
           About {title}
         </h2>
-
-        <div className="text-white leading-relaxed whitespace-pre-line text-base md:text-lg text-justify backdrop-blur-sm bg-white/5 p-6 rounded-2xl shadow-lg border border-white/10">
-          {description}
-        </div>
       </div>
-    </section>
-  );
-};
+      <div className="space-y-5 text-base leading-8 text-[var(--text-secondary)] md:text-lg">
+        {paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default DetailedDescription;

@@ -1,114 +1,149 @@
 "use client";
 
-import Slider from "react-slick";
 import Image from "next/image";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
-import React from "react";
+import Slider from "react-slick";
+import { ArrowRight, ChevronLeft, ChevronRight, PhoneCall } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
-type SlideData = {
+export type HomeSlide = {
   bg: string;
   title: string;
+  mobileTitle?: string;
   subtitle: string;
+  href: string;
+  label: string;
+  imagePosition?: string;
 };
 
-interface HeroSliderProps {
-  slides: SlideData[];
-}
+type HeroSliderProps = {
+  slides: HomeSlide[];
+};
 
-// Arrow Buttons — dark teal with soft gold accent
-const Arrow = ({
+function HeroArrow({
   direction,
   onClick,
 }: {
-  direction: "next" | "prev";
+  direction: "previous" | "next";
   onClick?: () => void;
-}) => (
-  <button
-    aria-label={direction === "next" ? "Next slide" : "Previous slide"}
-    onClick={onClick}
-    className={`absolute top-1/2 z-20 
-      ${direction === "next" ? "right-6" : "left-6"} 
-      -translate-y-1/2 bg-[#354664] backdrop-blur-md border border-[#E78946]
-      p-3 rounded-full shadow-lg hover:bg-[#E78946]  hover:scale-110 transition`}
-  >
-    {direction === "next" ? (
-      <FaChevronRight className="w-6 h-6 text-[#E78946] hover:text-white" />
-    ) : (
-      <FaChevronLeft className="w-6 h-6 text-[#E78946] hover:text-white" />
-    )}
-  </button>
-);
+}) {
+  const Icon = direction === "previous" ? ChevronLeft : ChevronRight;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={`${direction === "previous" ? "Previous" : "Next"} featured service`}
+      className={`absolute top-1/2 z-30 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[var(--brand-midnight)]/65 text-white shadow-lg backdrop-blur-md transition hover:bg-[var(--brand-ocean)] md:flex ${
+        direction === "previous" ? "left-5 lg:left-8" : "right-5 lg:right-8"
+      }`}
+    >
+      <Icon size={24} />
+    </button>
+  );
+}
 
-// CTA Button — gold gradient on dark teal base
-const CTAButton = ({ href, text }: { href: string; text: string }) => (
-  <Link
-    href={href}
-    className="mt-6 inline-block px-8 py-3 rounded-full text-white font-bold
-      bg-gradient-to-r from-[#e78946]  to-amber-500 shadow-md
-      hover:from-[#e78936] hover:to-amber-400 hover:shadow-amber-300/60 hover:scale-105 transition-transform"
-  >
-    {text}
-  </Link>
-);
-
-// Hero Slide — elegant overlay with gold text
-const HeroSlide = ({
+function HeroSlide({
   bg,
   title,
+  mobileTitle,
   subtitle,
-  isFirst,
-}: SlideData & { isFirst: boolean }) => (
-  <div className="relative w-full h-[85vh] flex items-center justify-center text-center">
-    <Image
-      src={bg}
-      alt={title}
-      fill
-      style={{ objectFit: "cover", objectPosition: "center" }}
-      loading={isFirst ? "eager" : "lazy"}
-      priority={isFirst}
-      fetchPriority={isFirst ? "high" : "auto"}
-      sizes="100vw"
-    />
-    {/* Elegant dark teal overlay for depth */}
-    <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
-      <h2 className="text-4xl md:text-5xl font-bold text-[#e78946] drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-        {title}
-      </h2>
-      <p className="mt-3 max-w-2xl text-lg text-[#e78946] drop-shadow-[0_1px_5px_rgba(0,0,0,0.4)]">
-        {subtitle}
-      </p>
-      <CTAButton href="tel:+917995792953" text="Call Now" />
-    </div>
-  </div>
-);
+  href,
+  label,
+  imagePosition = "center",
+  priority,
+}: HomeSlide & { priority: boolean }) {
+  return (
+    <article className="relative min-h-[34rem] overflow-hidden md:min-h-[42rem]">
+      <Image
+        src={bg}
+        alt={`${label} installed by Srinu Invisible Grills`}
+        fill
+        priority={priority}
+        fetchPriority={priority ? "high" : "auto"}
+        draggable={false}
+        sizes="100vw"
+        className="object-cover"
+        style={{ objectPosition: imagePosition }}
+      />
 
-const HeroSlider = ({ slides = [] }: HeroSliderProps) => {
-  const settings = React.useMemo(
-    () => ({
-      dots: true,
-      infinite: true,
-      autoplay: true,
-      speed: 700,
-      autoplaySpeed: 3500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: true,
-      nextArrow: <Arrow direction="next" />,
-      prevArrow: <Arrow direction="prev" />,
-    }),
-    []
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-midnight)]/80 via-[var(--brand-midnight)]/28 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--brand-midnight)]/45 to-transparent" />
+
+      <div className="relative mx-auto flex min-h-[34rem] w-full min-w-0 max-w-7xl items-center px-5 pb-16 pt-12 sm:px-8 md:min-h-[42rem] lg:px-10">
+        <div className="w-full min-w-0 max-w-2xl rounded-3xl border border-white/15 bg-[var(--glass-dark)] p-5 shadow-[var(--shadow-dark)] backdrop-blur-md sm:p-8 md:p-10">
+          <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[var(--brand-aqua)] sm:text-sm">
+            Measured • Supplied • Installed
+          </p>
+          <h2 className="mt-4 min-w-0 text-[2rem] font-black leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl">
+            {mobileTitle ? (
+              <>
+                <span className="sm:hidden">{mobileTitle}</span>
+                <span className="hidden sm:inline">{title}</span>
+              </>
+            ) : title}
+          </h2>
+          <p className="mt-5 max-w-xl text-base leading-7 text-[var(--text-light-muted)] sm:text-lg">
+            {subtitle}
+          </p>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href={href}
+              className="site-cta flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3 font-extrabold transition"
+            >
+              Explore {label} <ArrowRight size={18} />
+            </Link>
+            <a
+              href={`tel:${siteConfig.phoneInternational}`}
+              className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/[0.08] px-6 py-3 font-bold text-white transition hover:bg-white/[0.14]"
+            >
+              <PhoneCall size={18} /> {siteConfig.phoneDisplay}
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
   );
+}
+
+export default function HeroSlider({ slides }: HeroSliderProps) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    speed: 650,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    prevArrow: <HeroArrow direction="previous" />,
+    nextArrow: <HeroArrow direction="next" />,
+    swipe: true,
+    swipeToSlide: true,
+    draggable: true,
+    touchMove: true,
+    touchThreshold: 8,
+    accessibility: true,
+    pauseOnFocus: true,
+    pauseOnHover: true,
+  };
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#022c2c] via-[#034545] to-[#046666]">
-      <Slider {...settings}>
-        {slides.map((slide, i) => (
-          <HeroSlide key={i} {...slide} isFirst={i === 0} />
-        ))}
-      </Slider>
+    <section
+      className="home-hero-slider site-dark-hero relative w-full min-w-0 max-w-full overflow-hidden"
+      aria-label="Featured installation services. Swipe to view more."
+    >
+      <h1 className="sr-only">Invisible Grills and Safety Nets in Visakhapatnam</h1>
+      <div className="w-full min-w-0 overflow-hidden">
+        <Slider {...settings}>
+          {slides.map((slide, index) => (
+            <HeroSlide key={slide.href} {...slide} priority={index === 0} />
+          ))}
+        </Slider>
+      </div>
+      <p className="pointer-events-none absolute bottom-5 right-5 z-20 hidden text-xs font-bold uppercase tracking-[0.16em] text-white/65 sm:block">
+        Swipe to explore
+      </p>
     </section>
   );
-};
-
-export default HeroSlider;
+}

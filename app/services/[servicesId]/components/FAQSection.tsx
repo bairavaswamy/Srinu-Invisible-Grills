@@ -9,9 +9,10 @@ interface FAQ {
 
 interface FAQSectionProps {
   faqs: FAQ[];
+  title: string;
 }
 
-const FAQSection = ({ faqs }: FAQSectionProps) => {
+const FAQSection = ({ faqs, title }: FAQSectionProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -19,11 +20,11 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
   };
 
   return (
-    <section className="py-20 px-6 md:px-12 bg-[#354664] text-[#E78946]">
+    <section className="site-page px-6 py-20 md:px-12">
       <div className="max-w-4xl mx-auto">
         {/* Title */}
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 bg-[#E78946] bg-clip-text text-transparent drop-shadow-lg">
-          Frequently Asked Questions
+        <h2 className="mb-12 text-center text-4xl font-extrabold md:text-5xl">
+          {title} FAQs
         </h2>
 
         {/* FAQ Items */}
@@ -31,22 +32,26 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`rounded-2xl border transition-all duration-300 backdrop-blur-sm shadow-lg ${
+              className={`site-card rounded-2xl border transition-all duration-300 ${
                 openIndex === index
-                  ? "bg-white/10 border-[#E78946] shadow-amber-500/30"
-                  : "bg-white/5 border-white/10 hover:border-[#E78946]"
+                  ? "ring-2 ring-[var(--brand-aqua)]"
+                  : "hover:border-[var(--brand-ice)]"
               }`}
             >
               {/* FAQ Header */}
               <button
+                type="button"
                 onClick={() => toggleFAQ(index)}
+                aria-expanded={openIndex === index}
+                aria-controls={`service-faq-answer-${index}`}
                 className="w-full flex justify-between items-center text-left p-6 focus:outline-none"
               >
-                <span className="font-semibold text-lg text-[#E78946] pr-6">
+                <span className="pr-6 text-lg font-semibold text-[var(--text-primary)]">
                   {faq.question}
                 </span>
                 <svg
-                  className={`w-6 h-6 text-white transition-transform duration-300 ${
+                  aria-hidden="true"
+                  className={`h-6 w-6 text-[var(--brand-ocean)] transition-transform duration-300 ${
                     openIndex === index ? "rotate-180" : ""
                   }`}
                   fill="none"
@@ -64,11 +69,12 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
 
               {/* FAQ Answer */}
               <div
+                id={`service-faq-answer-${index}`}
                 className={`overflow-hidden transition-all duration-500 ${
-                  openIndex === index ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+                  openIndex === index ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="px-6 pb-6 text-white text-base leading-relaxed border-t border-white/10">
+                <div className="border-t border-slate-200 px-6 pb-6 text-base leading-relaxed text-[var(--text-secondary)]">
                   {faq.answer}
                 </div>
               </div>

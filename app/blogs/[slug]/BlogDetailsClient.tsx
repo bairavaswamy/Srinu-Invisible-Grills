@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Navbar from "@/app/navbar/Navbar";
 import Footer from "@/app/footer/Footer";
@@ -13,14 +11,14 @@ export default function BlogDetailsClient({
   return (
     <>
       <Navbar />
-      <div className="min-h-screen text-[#E78946] bg-[#354664] py-16 px-6 md:px-16">
+      <main className="site-page min-h-screen px-6 py-20 md:px-16">
         <div className="pt-10 max-w-4xl mx-auto">
-          <h1 className="text-4xl font-extrabold mb-6 text-[#E78946]">
+          <h1 className="mb-6 text-4xl font-extrabold leading-tight md:text-5xl">
             {blog.title}
           </h1>
-          <p className="text-amber-100/80 mb-6">{blog.date}</p>
+          <p className="site-accent mb-6 font-medium">{blog.date}</p>
 
-          <div className="relative w-full h-80 rounded-xl overflow-hidden mb-10 shadow-lg border border-amber-300/30">
+          <div className="relative mb-10 h-80 w-full overflow-hidden rounded-xl border border-[var(--glass-border-light)] shadow-[var(--shadow-soft)]">
             <Image
               src={blog.image}
               alt={blog.title}
@@ -29,11 +27,11 @@ export default function BlogDetailsClient({
             />
           </div>
 
-          <div className="space-y-5 text-amber-50/90 leading-relaxed whitespace-pre-line">
+          <div className="space-y-5 whitespace-pre-line text-lg leading-8 text-[var(--text-secondary)]">
             {blog.content}
           </div>
         </div>
-      </div>
+      </main>
 
       <StickyContactIcons />
       <Footer />
