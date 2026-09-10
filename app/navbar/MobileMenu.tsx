@@ -85,21 +85,21 @@ export default function MobileMenu({ isOpen, setIsOpen }: MobileMenuProps) {
       >
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <Link href="/" onClick={closeMenu} className="flex items-center gap-3">
-            <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/30 bg-white/5">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-white/30 bg-white">
               <Image
-                src="/srinulogo.webp"
+                src="/brand/srinu-mark.webp"
                 alt="Srinu Invisible Grills logo"
                 fill
                 sizes="48px"
-                className="object-contain"
+                className="object-contain p-1"
               />
             </div>
             <div className="leading-tight">
-              <p className="text-sm font-black tracking-wide text-[var(--brand-copper)]">
-                SRINU INVISIBLE
+              <p className="text-xl font-black tracking-[0.14em] text-white">
+                SRINU
               </p>
-              <p className="mt-0.5 text-xs font-bold tracking-[0.18em] text-[var(--brand-aqua)]">
-                GRILLS
+              <p className="mt-0.5 text-[10px] font-bold tracking-[0.13em] text-[var(--brand-aqua)]">
+                INVISIBLE GRILLS
               </p>
             </div>
           </Link>

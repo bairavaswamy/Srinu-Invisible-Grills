@@ -7,6 +7,10 @@ export const serviceRoutes = {
     slug: "invisible-grills",
     navLabel: "Invisible Grills",
   },
+  clothHangers: {
+    slug: "cloth-hangers",
+    navLabel: "Cloth Hangers",
+  },
   antiBirdSpikes: {
     slug: "anti-bird-spikes",
     navLabel: "Anti-Bird Spikes",

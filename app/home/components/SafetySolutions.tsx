@@ -12,11 +12,11 @@ export default function SafetySolutions({ cards }: { cards: HomeServiceCard[] })
               Core installation services
             </p>
             <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl md:text-5xl">
-              Practical protection for the spaces you use every day
+              Practical solutions for the spaces you use every day
             </h2>
             <p className="mt-4 max-w-2xl leading-7 text-[var(--text-secondary)]">
-              Compare the most requested safety solutions for balconies, windows,
-              homes and commercial properties in Visakhapatnam.
+              Explore safety nets, invisible grills and cloth hangers for balconies,
+              windows, homes and commercial properties in Visakhapatnam.
             </p>
           </div>
           <Link

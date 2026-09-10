@@ -79,7 +79,7 @@ export const generateMetadata = async ({ params }: Params): Promise<Metadata> =>
           "max-video-preview": -1,
         },
       },
-      category: "Safety Installation Services",
+      category: primaryService.category ?? "Safety Installation Services",
     };
   }
 
@@ -131,15 +131,7 @@ const providerSchema = {
   email: siteConfig.email,
   hasMap: siteConfig.googleBusinessUrl,
   sameAs: [siteConfig.googleBusinessUrl],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress:
-      "Road No. 2, opposite Old ACB Office, Hill View Doctors Colony",
-    addressLocality: "Visakhapatnam",
-    addressRegion: "Andhra Pradesh",
-    postalCode: "530013",
-    addressCountry: "IN",
-  },
+  address: siteConfig.postalAddress,
 };
 
 function PrimaryServicePage({

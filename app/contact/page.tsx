@@ -54,8 +54,8 @@ export default function ContactPage() {
             Contact Srinu Invisible Grills in Visakhapatnam
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[var(--text-secondary)]">
-            Tell us where you need invisible grills, safety nets or bird-control
-            protection. We’ll help confirm the right service and arrange a
+            Tell us where you need invisible grills, safety nets, cloth hangers or
+            bird-control protection. We’ll help confirm the right service and arrange a
             measurement-based quotation.
           </p>
         </section>

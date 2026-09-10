@@ -12,6 +12,7 @@ export type SeoService = {
   metaTitle: string;
   metaDescription: string;
   keywords: string[];
+  category?: string;
   description: string;
   image: string;
   imageAlt: string;
@@ -131,6 +132,73 @@ export const primaryServices: SeoService[] = [
         question: "How is the installation priced?",
         answer:
           "Pricing depends on the measured area, cable specification, spacing and site conditions. Contact us for a measurement-based quotation.",
+      },
+    ],
+  },
+  {
+    ...serviceRoutes.clothHangers,
+    title: "Cloth Hanger Installation in Visakhapatnam",
+    metaTitle: "Cloth Hanger Installation in Visakhapatnam | Srinu",
+    metaDescription:
+      "Ceiling-mounted cloth hanger installation in Visakhapatnam for balconies and utility areas. Save floor space with pulley drying systems fitted to your home.",
+    keywords: [
+      "cloth hangers Visakhapatnam",
+      "clothes drying hangers Vizag",
+      "ceiling cloth hanger installation",
+      "balcony pulley clothes drying system",
+    ],
+    category: "Clothes Drying System Installation",
+    description:
+      "Ceiling-mounted pulley cloth hangers for balconies and utility areas, making everyday laundry easier while keeping valuable floor space clear.",
+    image: "/services/cloth-hangers.webp",
+    imageAlt: "Ceiling-mounted pulley cloth hanger with drying rods in a covered balcony",
+    introduction: [
+      "Drying clothes should not take over your balcony or utility room. Our cloth hanger installation service in Visakhapatnam creates a dedicated overhead drying space for apartments and homes, helping you keep the floor available for everyday use.",
+      "A ceiling-mounted pulley system lets you lower the drying rods to a comfortable height for loading clothes, then raise them to dry. We assess the available ceiling space, mounting surface and clearance around doors, windows, fans and existing safety nets before recommending a suitable layout and rod length.",
+      "Installation includes measuring the space, securing the mounting brackets, aligning the rods and checking pulley movement. We demonstrate how to raise, lower and secure the system, explain the selected model's load limit and show you how to distribute laundry evenly for daily use.",
+    ],
+    benefits: [
+      "Keeps balcony and utility floors clear of drying stands",
+      "Pulley-operated rods lower for convenient loading",
+      "Rod length and placement planned around your space",
+      "Professional fitting with an operation and care demonstration",
+    ],
+    applications: [
+      "Covered apartment balconies",
+      "Utility and laundry areas",
+      "Service balconies beside kitchens",
+      "Covered terraces with suitable structural ceilings",
+    ],
+    faqs: [
+      {
+        question: "How does a ceiling-mounted cloth hanger work?",
+        answer:
+          "The drying rods are connected to a pulley-and-cord system. You lower the rods to hang clothes, raise them into the overhead drying space and secure the cords in the provided holder. We demonstrate the controls after installation.",
+      },
+      {
+        question: "Can cloth hangers be installed in a small balcony?",
+        answer:
+          "Many compact balconies can accommodate a ceiling-mounted drying system. We check the usable length, ceiling height and clearance around doors, windows and other fittings before confirming the size and position.",
+      },
+      {
+        question: "Can the hanger be fitted alongside invisible grills or safety nets?",
+        answer:
+          "Often, yes, when there is enough clearance for the rods, clothes and pulley cords. The hanger needs its own suitable mounting points; it should not be supported by safety nets or invisible-grill cables.",
+      },
+      {
+        question: "How much wet laundry can a cloth hanger hold?",
+        answer:
+          "The load limit depends on the selected model, rod configuration and mounting surface. We confirm the recommended capacity with your quotation and explain it during installation. Spread wet laundry evenly and stay within that limit.",
+      },
+      {
+        question: "How much does cloth hanger installation cost?",
+        answer:
+          "The quotation depends on the system, rod length, number of rods, mounting surface and site access. Call or WhatsApp us with your location, approximate space measurements and a photo of the ceiling area for an initial discussion.",
+      },
+      {
+        question: "How do I maintain the drying rods and pulley system?",
+        answer:
+          "Wipe the rods regularly and operate the cords gently. Keep the cord holder secure and check for fraying cords or loose fittings. If a part becomes damaged or movement is uneven, stop using the system until it has been checked.",
       },
     ],
   },

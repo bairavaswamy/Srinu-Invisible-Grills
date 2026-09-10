@@ -13,17 +13,17 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Safety Net & Invisible Grill Services in Vizag | Srinu",
+    absolute: "Safety Nets, Invisible Grills & Cloth Hangers in Vizag | Srinu",
   },
   description:
-    "Explore professional safety net, pigeon control and invisible grill installation services for homes, apartments and businesses in Visakhapatnam.",
+    "Explore safety net, invisible grill, pigeon control and cloth hanger installation services for homes, apartments and businesses in Visakhapatnam.",
   alternates: { canonical: `${siteConfig.url}/services` },
   openGraph: {
     type: "website",
     url: `${siteConfig.url}/services`,
-    title: "Safety Installation Services in Visakhapatnam",
+    title: "Professional Installation Services in Visakhapatnam",
     description:
-      "Compare our 10 core safety net, invisible grill and bird-control installation services in Visakhapatnam.",
+      "Compare safety nets, invisible grills, bird control and cloth hanger installation services in Visakhapatnam.",
     siteName: siteConfig.name,
     images: [
       {
@@ -71,7 +71,7 @@ const ServicesPage = () => {
             Professional installation in Visakhapatnam
           </p>
           <h1 className="mx-auto mt-4 max-w-4xl text-4xl font-black leading-tight md:text-6xl">
-            Safety Net and Invisible Grill Installation Services in Visakhapatnam
+            Safety Nets, Invisible Grills and Cloth Hangers in Visakhapatnam
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[var(--text-secondary)]">
             Compare our core services, open a detailed guide and request a

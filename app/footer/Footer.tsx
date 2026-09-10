@@ -11,6 +11,7 @@ import { siteConfig } from "@/lib/site";
 
 const serviceLinks = [
   { label: "Invisible Grills", href: "/services/invisible-grills" },
+  { label: "Cloth Hangers", href: "/services/cloth-hangers" },
   { label: "Balcony Safety Nets", href: "/services/balcony-safety-nets" },
   { label: "Pigeon Safety Nets", href: "/services/pigeon-safety-nets" },
   { label: "Anti-Bird Spikes", href: "/services/anti-bird-spikes" },
@@ -59,24 +60,20 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_0.8fr_0.8fr_0.8fr]">
           <section aria-label="Srinu Invisible Grills company information">
-            <Link href="/" className="flex w-fit items-center gap-3">
-              <div className="relative h-14 w-14 overflow-hidden rounded-full border border-white/25 bg-white/5">
+            <Link href="/" aria-label="Srinu Invisible Grills home" className="block w-fit">
+              <div className="relative h-52 w-52 overflow-hidden rounded-2xl bg-white p-2 shadow-lg">
                 <Image
-                  src="/srinulogo.webp"
+                  src={siteConfig.logo}
                   alt="Srinu Invisible Grills logo"
                   fill
-                  sizes="56px"
-                  className="object-contain"
+                  sizes="208px"
+                  className="object-contain p-2"
                 />
-              </div>
-              <div>
-                <p className="text-lg font-black tracking-wide text-white">SRINU INVISIBLE</p>
-                <p className="mt-0.5 text-xs font-bold tracking-[0.2em] text-[var(--brand-aqua)]">GRILLS</p>
               </div>
             </Link>
 
             <p className="mt-5 max-w-md text-sm leading-7 text-[var(--text-light-muted)]">
-              Measured safety installations for balconies, windows and open spaces
+              Safety solutions and cloth hangers for balconies, windows and homes
               across Visakhapatnam. Clear recommendations, suitable materials and
               neat on-site fitting.
             </p>

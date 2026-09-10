@@ -5,6 +5,7 @@ import { siteConfig } from "@/lib/site";
 const marqueeItems = [
   { label: "Balcony Safety Nets", href: "/services/balcony-safety-nets" },
   { label: "Invisible Grills", href: "/services/invisible-grills" },
+  { label: "Cloth Hangers", href: "/services/cloth-hangers" },
   { label: "Pigeon Safety Nets", href: "/services/pigeon-safety-nets" },
   { label: "Anti-Bird Spikes", href: "/services/anti-bird-spikes" },
   { label: "Children Safety Nets", href: "/services/children-safety-nets" },

@@ -3,27 +3,31 @@
 @import "slick-carousel/slick/slick-theme.css";
 
 :root {
-  /* Primary brand */
-  --brand-midnight: #061722;
-  --brand-ocean: #0c2a38;
-  --brand-aqua: #1fc7c1;
-  --brand-ice: #53c7f0;
-  /* Legacy accent alias retained for existing components; no orange is used. */
-  --brand-copper: #53c7f0;
+  /* Navy and orange from the Srinu logo. */
+  --brand-navy: #061a3a;
+  --brand-orange: #ff7617;
+  --brand-orange-light: #ff984d;
+  --brand-orange-ink: #ae4600;
+  --brand-midnight: var(--brand-navy);
+  --brand-ocean: #122d53;
+  /* Legacy aliases keep existing components on the shared brand palette. */
+  --brand-aqua: var(--brand-orange-ink);
+  --brand-ice: var(--brand-orange-light);
+  --brand-copper: var(--brand-orange-ink);
 
   /* Backgrounds */
-  --background-main: #f4fafc;
+  --background-main: #fff9f4;
   --background-white: #ffffff;
-  --background-dark: #061722;
+  --background-dark: var(--brand-navy);
 
   /* Text */
-  --text-primary: #0a202b;
-  --text-secondary: #647984;
-  --text-light: #f8fcff;
-  --text-light-muted: rgba(248, 252, 255, 0.74);
+  --text-primary: var(--brand-navy);
+  --text-secondary: #536176;
+  --text-light: #ffffff;
+  --text-light-muted: rgba(255, 255, 255, 0.78);
 
   /* Glass surfaces */
-  --glass-dark: rgba(6, 23, 34, 0.68);
+  --glass-dark: rgba(6, 26, 58, 0.68);
   --glass-dark-soft: rgba(255, 255, 255, 0.09);
   --glass-light: rgba(255, 255, 255, 0.72);
 
@@ -32,9 +36,10 @@
   --glass-border-light: rgba(255, 255, 255, 0.88);
 
   /* Shadows */
-  --shadow-soft: 0 18px 50px rgba(6, 23, 34, 0.1);
+  --shadow-soft: 0 18px 50px rgba(6, 26, 58, 0.1);
   --shadow-dark: 0 18px 50px rgba(0, 0, 0, 0.2);
-  --shadow-aqua: 0 14px 35px rgba(31, 199, 193, 0.25);
+  --shadow-orange: 0 14px 35px rgba(255, 118, 23, 0.22);
+  --shadow-aqua: var(--shadow-orange);
 }
 
 * {
@@ -64,6 +69,13 @@ body {
   outline-offset: 3px;
 }
 
+.site-header,
+.site-dark-hero,
+.site-footer {
+  --brand-aqua: var(--brand-orange);
+  --brand-copper: var(--brand-orange);
+}
+
 .site-header {
   color: var(--text-light);
   background: linear-gradient(135deg, var(--brand-midnight), var(--brand-ocean));
@@ -76,34 +88,36 @@ body {
   background: linear-gradient(135deg, var(--brand-midnight), var(--brand-ocean));
 }
 
-.site-dark-hero :is(h1, h2, h3) {
+.site-dark-hero :is(h1, h2, h3):not(.site-accent) {
   color: var(--text-light) !important;
 }
 
-.site-dark-hero :is(p, li) {
+.site-dark-hero :is(p, li):not(.site-accent):not([class*="text-[var(--brand-"]) {
   color: var(--text-light-muted) !important;
 }
 
 .site-page {
+  --brand-aqua: var(--brand-orange-ink);
+  --brand-copper: var(--brand-orange-ink);
   color: var(--text-primary);
   background: var(--background-main) !important;
 }
 
-.site-page :is(h1, h2, h3) {
+.site-page :is(h1, h2, h3):not(.site-accent) {
   color: var(--text-primary) !important;
   background: none;
   -webkit-text-fill-color: currentColor;
 }
 
-.site-page :where(p, li) {
+.site-page :where(p, li):not(.site-accent):not([class*="text-[var(--brand-"]) {
   color: var(--text-secondary);
 }
 
-.site-page .site-dark-hero :is(h1, h2, h3) {
+.site-page .site-dark-hero :is(h1, h2, h3):not(.site-accent) {
   color: var(--text-light) !important;
 }
 
-.site-page .site-dark-hero :is(p, li) {
+.site-page .site-dark-hero :is(p, li):not(.site-accent):not([class*="text-[var(--brand-"]) {
   color: var(--text-light-muted) !important;
 }
 
@@ -111,12 +125,14 @@ body {
   color: var(--text-primary);
   background: linear-gradient(
     135deg,
-    rgba(83, 199, 240, 0.08),
-    rgba(31, 199, 193, 0.05)
+    rgba(255, 118, 23, 0.06),
+    rgba(255, 152, 77, 0.025)
   ) !important;
 }
 
 .site-card {
+  --brand-aqua: var(--brand-orange-ink);
+  --brand-copper: var(--brand-orange-ink);
   color: var(--text-primary);
   background: var(--glass-light) !important;
   border: 1px solid var(--glass-border-light) !important;
@@ -124,18 +140,18 @@ body {
   backdrop-filter: blur(18px);
 }
 
-.site-card :is(h1, h2, h3, summary, strong) {
+.site-card :is(h1, h2, h3, summary, strong):not(.site-accent) {
   color: var(--text-primary) !important;
 }
 
-.site-card :where(p, li) {
+.site-card :where(p, li):not(.site-accent):not([class*="text-[var(--brand-"]) {
   color: var(--text-secondary) !important;
 }
 
 .site-cta {
   color: var(--text-primary) !important;
-  background: linear-gradient(135deg, var(--brand-aqua), var(--brand-ice)) !important;
-  box-shadow: var(--shadow-aqua) !important;
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-light)) !important;
+  box-shadow: var(--shadow-orange) !important;
 }
 
 .site-cta:hover {
@@ -234,7 +250,7 @@ body {
   width: 8px;
   border-radius: 999px;
   color: transparent;
-  background: rgba(248, 252, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   opacity: 1;
   content: "";
 }

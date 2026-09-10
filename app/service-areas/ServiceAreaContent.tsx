@@ -237,7 +237,7 @@ export default function ServiceAreaContent({ location, service }: Props) {
               "Complete fitting and final inspection",
             ].map((step, index) => (
               <li key={step} className="site-card rounded-2xl p-5 text-[var(--text-secondary)]">
-                <span className="mb-3 block text-2xl font-black text-teal-300">{index + 1}</span>
+                <span className="mb-3 block text-2xl font-black text-[var(--brand-aqua)]">{index + 1}</span>
                 {step}
               </li>
             ))}

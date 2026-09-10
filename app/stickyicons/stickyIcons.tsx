@@ -22,7 +22,7 @@ const StickyContactIcons = () => {
         <a
           href={`tel:${siteConfig.phoneInternational}`}
           aria-label={`Call us at ${siteConfig.phoneDisplay}`}
-          className="flex h-11 w-11 items-center justify-center rounded-l-2xl bg-[#E5484D] text-white shadow-lg transition hover:bg-[#C83C42] focus:outline-none focus:ring-2 focus:ring-white"
+          className="flex h-11 w-11 items-center justify-center rounded-l-2xl bg-[var(--brand-ocean)] text-white shadow-lg transition hover:bg-[var(--brand-midnight)] focus:outline-none focus:ring-2 focus:ring-white"
         >
           <FiPhone className="h-5 w-5" aria-hidden="true" />
         </a>
@@ -51,7 +51,7 @@ const StickyContactIcons = () => {
         <a
           href={`tel:${siteConfig.phoneInternational}`}
           aria-label={`Call us at ${siteConfig.phoneDisplay}`}
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E5484D] text-white shadow-lg transition hover:-translate-y-1 hover:bg-[#C83C42] focus:outline-none focus:ring-2 focus:ring-white"
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--brand-ocean)] text-white shadow-lg transition hover:-translate-y-1 hover:bg-[var(--brand-midnight)] focus:outline-none focus:ring-2 focus:ring-white"
         >
           <FiPhone className="h-6 w-6" aria-hidden="true" />
         </a>

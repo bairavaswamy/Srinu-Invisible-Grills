@@ -71,6 +71,13 @@ const serviceCards: HomeServiceCard[] = [
     href: "/services/pigeon-safety-nets",
   },
   {
+    image: "/services/cloth-hangers.webp",
+    title: "Cloth Hangers",
+    description:
+      "Ceiling-mounted pulley drying systems for balconies and utility areas, with easy-to-lower rods that keep floor space clear.",
+    href: "/services/cloth-hangers",
+  },
+  {
     image: "/images/images-slider-55.webp",
     title: "Anti-Bird Spikes",
     description:
