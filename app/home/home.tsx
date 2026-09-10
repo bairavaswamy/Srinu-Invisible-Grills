@@ -50,63 +50,72 @@ const slides: HomeSlide[] = [
 
 const serviceCards: HomeServiceCard[] = [
   {
-    image: "/images/invisble.jpg",
+    image: "/home-services/invisible-grills.webp",
+    imageAlt: "Slim vertical stainless-steel invisible grill cables across an apartment balcony",
     title: "Invisible Grills",
     description:
       "High-tensile stainless-steel cable systems for balconies and windows, with minimal visual obstruction.",
     href: "/services/invisible-grills",
   },
   {
-    image: "/balcony/balcony-net.webp",
+    image: "/home-services/balcony-safety-nets.webp",
+    imageAlt: "White square-mesh safety net enclosing a bright apartment balcony",
     title: "Balcony Safety Nets",
     description:
       "Measured outdoor netting for apartment balconies, children, pets and everyday household safety.",
     href: "/services/balcony-safety-nets",
   },
   {
-    image: "/images/residential-net.webp",
+    image: "/home-services/pigeon-safety-nets.webp",
+    imageAlt: "Fine bird-exclusion mesh across a covered balcony with a pigeon outside",
     title: "Pigeon Safety Nets",
     description:
       "Custom net coverage that helps stop pigeon entry while allowing fresh air and daylight into the space.",
     href: "/services/pigeon-safety-nets",
   },
   {
-    image: "/services/cloth-hangers.webp",
+    image: "/home-services/cloth-hangers.webp",
+    imageAlt: "Ceiling-mounted pulley drying rods with laundry above a clear balcony floor",
     title: "Cloth Hangers",
     description:
       "Ceiling-mounted pulley drying systems for balconies and utility areas, with easy-to-lower rods that keep floor space clear.",
     href: "/services/cloth-hangers",
   },
   {
-    image: "/images/images-slider-55.webp",
+    image: "/home-services/anti-bird-spikes.webp",
+    imageAlt: "Close-up of anti-bird spike strips fitted along a balcony ledge",
     title: "Anti-Bird Spikes",
     description:
       "Weather-resistant deterrent strips for ledges, parapets and other common bird-perching surfaces.",
     href: "/services/anti-bird-spikes",
   },
   {
-    image: "/balcony/children-safety-net.webp",
+    image: "/home-services/children-safety-nets.webp",
+    imageAlt: "Fully netted family balcony with a playmat and toys set back from the railing",
     title: "Children Safety Nets",
     description:
       "Protective net barriers for balconies, windows and staircase openings used by families with children.",
     href: "/services/children-safety-nets",
   },
   {
-    image: "/balcony/sports-nets.webp",
+    image: "/home-services/sports-practice-nets.webp",
+    imageAlt: "Cricket practice lane enclosed by green sports netting",
     title: "Sports Practice Nets",
     description:
       "Impact-ready practice netting for cricket, football and selected sports areas in schools and properties.",
     href: "/services/sports-practice-nets",
   },
   {
-    image: "/images/construction-net.webp",
+    image: "/home-services/construction-safety-nets.webp",
+    imageAlt: "Green debris-control mesh and projecting catch nets on a building under construction",
     title: "Construction Safety Nets",
     description:
       "Heavy-duty perimeter and debris-control netting planned for exposed building elevations and active work areas.",
     href: "/services/construction-safety-nets",
   },
   {
-    image: "/balcony/staircase-net.webp",
+    image: "/home-services/staircase-safety-nets.webp",
+    imageAlt: "White safety net secured along the handrail and gaps of an indoor staircase",
     title: "Staircase Safety Nets",
     description:
       "Custom net barriers for open stairwells, railing gaps and landings in homes, schools and commercial spaces.",
@@ -114,13 +123,15 @@ const serviceCards: HomeServiceCard[] = [
   },
   {
     image: "/balcony/ductarea-nets.webp",
+    imageAlt: "Installers fitting safety netting along an apartment building duct area",
     title: "Duct Area Safety Nets",
     description:
       "Measured coverage for apartment ducts and shafts that helps control bird entry, debris and exposed openings.",
     href: "/services/duct-area-safety-nets",
   },
   {
-    image: "/balcony/openarea-safety-net.webp",
+    image: "/home-services/open-area-safety-nets.webp",
+    imageAlt: "Wide safety net coverage across the open atrium of a residential building",
     title: "Open Area Safety Nets",
     description:
       "Weather-ready safety netting for terraces, rooftops and larger openings where broad protection is required.",

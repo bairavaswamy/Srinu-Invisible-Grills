@@ -5,24 +5,24 @@ import { siteConfig } from "@/lib/site";
 
 export type HomeServiceCard = {
   image: string;
+  imageAlt: string;
   title: string;
   description: string;
   href: string;
 };
 
-export default function SafetyCard({ image, title, description, href }: HomeServiceCard) {
+export default function SafetyCard({ image, imageAlt, title, description, href }: HomeServiceCard) {
   return (
     <article className="site-card group flex h-full flex-col overflow-hidden rounded-3xl">
       <Link href={href} className="block" aria-label={`View ${title}`}>
         <div className="relative aspect-[16/10] overflow-hidden">
           <Image
             src={image}
-            alt={`${title} installation in Visakhapatnam`}
+            alt={imageAlt}
             fill
             sizes="(max-width: 640px) 94vw, (max-width: 1024px) 46vw, 31vw"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[var(--brand-midnight)]/55 to-transparent" />
         </div>
       </Link>
 
