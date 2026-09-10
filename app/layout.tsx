@@ -1,6 +1,9 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { localBusinessSchema, siteConfig } from "@/lib/site";
+import { getGoogleTagManagerConfig } from "@/lib/google-tag-manager";
+
+const googleTagManager = getGoogleTagManagerConfig(process.env.NEXT_PUBLIC_GTM_ID);
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -55,7 +58,26 @@ const RootLayout = ({
 }) => {
   return (
     <html lang="en">
+      <head>
+        {googleTagManager && (
+          <script
+            id="google-tag-manager"
+            dangerouslySetInnerHTML={{ __html: googleTagManager.script }}
+          />
+        )}
+      </head>
       <body className="bg-[var(--background-main)] text-[var(--text-primary)] antialiased">
+        {googleTagManager && (
+          <noscript>
+            <iframe
+              title="Google Tag Manager"
+              src={googleTagManager.noScriptUrl}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        )}
         {children}
         <script
           type="application/ld+json"

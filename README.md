@@ -20,6 +20,12 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Google Tag Manager
+
+GTM is prepared site-wide and stays disabled until a real container ID is set.
+Add it to `NEXT_PUBLIC_GTM_ID` in `.env.local`, then rebuild and redeploy.
+See [the setup instructions](docs/google-tag-manager.md) for activation and testing.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
